@@ -1,9 +1,5 @@
 class SolarSystem{
 
-    get planets() {
-        return this._planets;
-    }
-
     /*  the SolarSystem contains an Array of CelestialBody elements
      */
 
@@ -41,7 +37,7 @@ class SolarSystem{
                     this vector is the one used to compute force vector and acceleration vector
                  */
 
-                diff_position = p.position.clone().sub(planet.position);
+                diff_position = p._position.clone().sub(planet._position);
 
 
                 power_dist = diff_position.lengthSq();
@@ -51,7 +47,7 @@ class SolarSystem{
                 /*  I take the influence of each planet p in the solar system
                     to compute the force attribute of the "planet"
                  */
-                force = (G * planet.mass * p.mass) / power_dist;
+                force = (G * planet._mass * p._mass) / power_dist;
 
                 /*  now i have the module of force but i want the three components x,y,z
                     so i use the diff_position vector normalized to obtain the right force
@@ -72,7 +68,7 @@ class SolarSystem{
             acceleration i need to divide sum_of_forces by the mass of the "planet"
          */
 
-        sum_of_forces.divideScalar(planet.mass);
+        sum_of_forces.divideScalar(planet._mass);
 
         planet._accel = sum_of_forces;
         //planet.accel(sum_of_forces);
@@ -85,25 +81,6 @@ class SolarSystem{
 
 class CelestialBody {
 
-    get position() {
-        return this._position;
-    }
-
-    get velocity() {
-        return this._velocity;
-    }
-
-    get accel() {
-        return this._accel;
-    }
-
-
-    get radius() {
-        return this._radius;
-    }
-    get mass() {
-        return this._mass;
-    }
 
     /*  mass and radius are float
 
@@ -152,7 +129,7 @@ function accelerationRK(solarSys, planet, position){
     var dst = 0.0;
     var force = 0.0;
 
-    for (const p of solarSys.planets){
+    for (const p of solarSys._planets){
         //if p isn't the planet i add the contribution to the acceleration otherwise ignore
         if (p === planet) {
             //DO NOTHING
@@ -162,7 +139,7 @@ function accelerationRK(solarSys, planet, position){
                 this vector is the one used to compute force vector and acceleration vector
              */
 
-            diff_position = p.position.clone().sub(position);
+            diff_position = p._position.clone().sub(position);
 
 
             power_dist = diff_position.lengthSq();
@@ -172,7 +149,7 @@ function accelerationRK(solarSys, planet, position){
             /*  I take the influence of each planet p in the solar system
                 to compute the force attribute of the "planet"
              */
-            force = (G * planet.mass * p.mass) / power_dist;
+            force = (G * planet._mass * p._mass) / power_dist;
 
             /*  now i have the module of force but i want the three components x,y,z
                 so i use the diff_position vector normalized to obtain the right force
@@ -193,7 +170,7 @@ function accelerationRK(solarSys, planet, position){
         acceleration i need to divide sum_of_forces by the mass of the "planet"
      */
 
-    sum_of_forces.divideScalar(planet.mass);
+    sum_of_forces.divideScalar(planet._mass);
 
     return sum_of_forces;
 }
@@ -228,14 +205,14 @@ function runge_kutta(solarSys, planet, dt) {
 
     //K1 for position and velocity
 
-    pos1 = planet.velocity;
-    vel1 =  planet.accel;
+    pos1 = planet._velocity;
+    vel1 =  planet._accel;
 
 
     //K2 for position and velocity
 
-    pos2 = planet.position.clone().add(pos1.clone().multiplyScalar(dt/2));
-    vel2 = planet.velocity.clone().add(vel1.clone().multiplyScalar(dt/2));
+    pos2 = planet._position.clone().add(pos1.clone().multiplyScalar(dt/2));
+    vel2 = planet._velocity.clone().add(vel1.clone().multiplyScalar(dt/2));
 
     temp = pos2;
 
@@ -244,8 +221,8 @@ function runge_kutta(solarSys, planet, dt) {
 
     //K3 for position and velocity
 
-    pos3 = planet.position.clone().add(pos2.clone().multiplyScalar(dt/2));
-    vel3 = planet.velocity.clone().add(vel2.clone().multiplyScalar(dt/2));
+    pos3 = planet._position.clone().add(pos2.clone().multiplyScalar(dt/2));
+    vel3 = planet._velocity.clone().add(vel2.clone().multiplyScalar(dt/2));
 
     temp = pos3;
 
@@ -254,8 +231,8 @@ function runge_kutta(solarSys, planet, dt) {
 
     //K4 for position and velocity
 
-    pos4 = planet.position.clone().add(pos3.clone().multiplyScalar(dt));
-    vel4 = planet.velocity.clone().add(vel3.clone().multiplyScalar(dt));
+    pos4 = planet._position.clone().add(pos3.clone().multiplyScalar(dt));
+    vel4 = planet._velocity.clone().add(vel3.clone().multiplyScalar(dt));
 
     temp = pos4;
 
@@ -263,38 +240,43 @@ function runge_kutta(solarSys, planet, dt) {
     vel4 = accelerationRK(solarSys, planet, temp);
 
 
-    //calculate sum of coefficients
+    //calculate sum of coefficients + old position | old velocity
 
-    next_position = planet.position.clone().add(pos1.clone().add(pos2.clone().multiplyScalar(2)).add(pos3.clone().multiplyScalar(2)).add(pos4.clone()).multiplyScalar(dt/6));
+    next_position = planet._position.clone().add(pos1.clone().add(pos2.clone().multiplyScalar(2)).add(pos3.clone().multiplyScalar(2)).add(pos4.clone()).multiplyScalar(dt/6));
 
-    next_velocity = planet.velocity.clone().add(vel1.clone().add(vel2.clone().multiplyScalar(2)).add(vel3.clone().multiplyScalar(2)).add(vel4.clone()).multiplyScalar(dt/6));
+    next_velocity = planet._velocity.clone().add(vel1.clone().add(vel2.clone().multiplyScalar(2)).add(vel3.clone().multiplyScalar(2)).add(vel4.clone()).multiplyScalar(dt/6));
 
 
     planet._position = next_position;
     planet._velocity = next_velocity;
 
     solarSys.acceleration(planet);
-    //TODO now need to calculate the new correct acceleration
+    //now need to calculate the new correct acceleration
 
 
 }
 
 function main(){
-    var sun = new CelestialBody(100, 3, new THREE.Vector3());
-    var earth = new CelestialBody(10, 1, new THREE.Vector3(7, 1, 1) );
+    var sun = new CelestialBody(1.9891e+30, 6.95700e+2, new THREE.Vector3());
+    var earth = new CelestialBody(5.97219e+24, 6.371, new THREE.Vector3(152e+15, 0, 0) );
 
+    earth._velocity= new THREE.Vector3(0, 29000, 0);
     var solarSys= new SolarSystem([sun,earth]);
-    console.log('earth pos ' + earth.position.x +' ' + earth.position.y + ' ' + earth.position.z +
-        '\n earth vel ' + earth.velocity.x +' ' + earth.velocity.y + ' ' + earth.velocity.z +
-        ' \n sun pos ' + sun.position.x + ' ' + sun.position.y + ' ' + sun.position.z
-        + '\n acceleration ' + earth._accel.x);
 
     solarSys.acceleration(earth);
-    runge_kutta(solarSys, earth, 1);
-    console.log('earth pos ' + earth.position.x + ' '+  earth.position.y+ ' ' + earth.position.z +
-        '\n earth vel ' + earth.velocity.x +' ' + earth.velocity.y + ' ' + earth.velocity.z +
-        ' \n sun pos ' + sun.position.x + ' ' + sun.position.y+ ' ' + sun.position.z
-        + '\n acceleration ' + earth._accel.x);
+
+
+    console.log('earth pos ' + earth._position.x +' ' + earth._position.y + ' ' + earth._position.z +
+        '\n earth vel ' + earth._velocity.x +' ' + earth._velocity.y + ' ' + earth._velocity.z +
+        ' \n sun pos ' + sun._position.x + ' ' + sun._position.y + ' ' + sun._position.z
+        + '\n acceleration ' + earth._accel.x +' ' + earth._accel.y + ' ' + earth._accel.z );
+
+
+    runge_kutta(solarSys, earth, 24*60*60*360);
+    console.log('earth pos ' + earth._position.x + ' '+  earth._position.y+ ' ' + earth._position.z +
+        '\n earth vel ' + earth._velocity.x +' ' + earth._velocity.y + ' ' + earth._velocity.z +
+        ' \n sun pos ' + sun._position.x + ' ' + sun._position.y+ ' ' + sun._position.z
+        + '\n acceleration ' + earth._accel.x +' ' + earth._accel.y + ' ' + earth._accel.z);
 }
 
 
