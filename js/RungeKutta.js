@@ -41,7 +41,7 @@ class SolarSystem{
                     this vector is the one used to compute force vector and acceleration vector
                  */
 
-                diff_position = p.position.sub(planet.position);
+                diff_position = p.position.clone().sub(planet.position);
 
 
                 power_dist = diff_position.lengthSq();
@@ -74,7 +74,8 @@ class SolarSystem{
 
         sum_of_forces.divideScalar(planet.mass);
 
-        planet.accel(sum_of_forces);
+        planet._accel = sum_of_forces;
+        //planet.accel(sum_of_forces);
     }
 
 
@@ -166,7 +167,7 @@ function accelerationRK(solarSys, planet, position){
                 this vector is the one used to compute force vector and acceleration vector
              */
 
-            diff_position = p.position.sub(position);
+            diff_position = p.position.clone().sub(position);
 
 
             power_dist = diff_position.lengthSq();
@@ -274,12 +275,28 @@ function runge_kutta(solarSys, planet, dt) {
     next_velocity = planet.velocity.add(vel1.add(vel2.multiplyScalar(2)).add(vel3.multiplyScalar(2)).add(vel4).multiplyScalar(dt/6));
 
 
-    planet.position(next_position);
-    planet.velocity(next_velocity);
+    planet._position = next_position;
+    planet._velocity = next_velocity;
 
     //TODO now need to calculate the new correct acceleration
 
 
+}
+
+function main(){
+    var sun = new CelestialBody(100, 3, new THREE.Vector3());
+    var earth = new CelestialBody(10, 1, new THREE.Vector3(7, 1, 1) );
+
+    var solarSys= new SolarSystem([sun,earth]);
+    console.log('earth pos ' + earth.position.x +' ' + earth.position.y + ' ' + earth.position.z +
+        ' \n sun pos ' + sun.position.x + ' ' + sun.position.y + ' ' + sun.position.z
+        + '\n acceleration ' + earth._accel.x);
+
+    solarSys.acceleration(earth);
+    runge_kutta(solarSys, earth, 1);
+    console.log('earth pos ' + earth.position.x + ' '+  earth.position.y+ ' ' + earth.position.z +
+        ' \n sun pos ' + sun.position.x + ' ' + sun.position.y+ ' ' + sun.position.z
+        + '\n acceleration ' + earth._accel.x);
 }
 
 
