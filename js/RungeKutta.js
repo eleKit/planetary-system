@@ -89,24 +89,12 @@ class CelestialBody {
         return this._position;
     }
 
-    set position(value) {
-        this._position = value;
-    }
-
     get velocity() {
         return this._velocity;
     }
 
-    set velocity(value) {
-        this._velocity = value;
-    }
-
     get accel() {
         return this._accel;
-    }
-
-    set accel(value) {
-        this._accel = value;
     }
 
 
@@ -148,6 +136,13 @@ class CelestialBody {
     a planet as CelestialBody type
     and a delta time
 */
+
+
+/*  instead of the simple acceleration method inside SolarSystem class
+    here the accelerationRK method HAS TO BE USED ONLY BY runge_kutta method
+    because it doesn't calculate the real acceleration of the body, but the partial
+    accelerations x,y,z needed by the Runge Kutta coefficients
+ */
 
 function accelerationRK(solarSys, planet, position){
     const G = 6.674e-11;
@@ -239,8 +234,8 @@ function runge_kutta(solarSys, planet, dt) {
 
     //K2 for position and velocity
 
-    pos2 = planet.position.add(pos1.multiplyScalar(dt/2));
-    vel2 = planet.velocity.add(vel1.multiplyScalar(dt/2));
+    pos2 = planet.position.clone().add(pos1.clone().multiplyScalar(dt/2));
+    vel2 = planet.velocity.clone().add(vel1.clone().multiplyScalar(dt/2));
 
     temp = pos2;
 
@@ -249,8 +244,8 @@ function runge_kutta(solarSys, planet, dt) {
 
     //K3 for position and velocity
 
-    pos3 = planet.position.add(pos2.multiplyScalar(dt/2));
-    vel3 = planet.velocity.add(vel2.multiplyScalar(dt/2));
+    pos3 = planet.position.clone().add(pos2.clone().multiplyScalar(dt/2));
+    vel3 = planet.velocity.clone().add(vel2.clone().multiplyScalar(dt/2));
 
     temp = pos3;
 
@@ -259,8 +254,8 @@ function runge_kutta(solarSys, planet, dt) {
 
     //K4 for position and velocity
 
-    pos4 = planet.position.add(pos3.multiplyScalar(dt));
-    vel4 = planet.velocity.add(vel3.multiplyScalar(dt));
+    pos4 = planet.position.clone().add(pos3.clone().multiplyScalar(dt));
+    vel4 = planet.velocity.clone().add(vel3.clone().multiplyScalar(dt));
 
     temp = pos4;
 
@@ -270,14 +265,15 @@ function runge_kutta(solarSys, planet, dt) {
 
     //calculate sum of coefficients
 
-    next_position = planet.position.add(pos1.add(pos2.multiplyScalar(2)).add(pos3.multiplyScalar(2)).add(pos4).multiplyScalar(dt/6));
+    next_position = planet.position.clone().add(pos1.clone().add(pos2.clone().multiplyScalar(2)).add(pos3.clone().multiplyScalar(2)).add(pos4.clone()).multiplyScalar(dt/6));
 
-    next_velocity = planet.velocity.add(vel1.add(vel2.multiplyScalar(2)).add(vel3.multiplyScalar(2)).add(vel4).multiplyScalar(dt/6));
+    next_velocity = planet.velocity.clone().add(vel1.clone().add(vel2.clone().multiplyScalar(2)).add(vel3.clone().multiplyScalar(2)).add(vel4.clone()).multiplyScalar(dt/6));
 
 
     planet._position = next_position;
     planet._velocity = next_velocity;
 
+    solarSys.acceleration(planet);
     //TODO now need to calculate the new correct acceleration
 
 
@@ -289,12 +285,14 @@ function main(){
 
     var solarSys= new SolarSystem([sun,earth]);
     console.log('earth pos ' + earth.position.x +' ' + earth.position.y + ' ' + earth.position.z +
+        '\n earth vel ' + earth.velocity.x +' ' + earth.velocity.y + ' ' + earth.velocity.z +
         ' \n sun pos ' + sun.position.x + ' ' + sun.position.y + ' ' + sun.position.z
         + '\n acceleration ' + earth._accel.x);
 
     solarSys.acceleration(earth);
     runge_kutta(solarSys, earth, 1);
     console.log('earth pos ' + earth.position.x + ' '+  earth.position.y+ ' ' + earth.position.z +
+        '\n earth vel ' + earth.velocity.x +' ' + earth.velocity.y + ' ' + earth.velocity.z +
         ' \n sun pos ' + sun.position.x + ' ' + sun.position.y+ ' ' + sun.position.z
         + '\n acceleration ' + earth._accel.x);
 }
