@@ -22,7 +22,7 @@ class SolarSystem{
          //TODO check if var can be used
         const G = 6.674e-11;
         var diff_position= new THREE.Vector3();
-        var sum_of_forces = new THREE.Vector3(0,0,0);
+        var sum_of_forces = new THREE.Vector3();
         var power_dist = 0.0;
         var dst = 0.0;
         var force = 0.0;
@@ -37,10 +37,10 @@ class SolarSystem{
                     this vector is the one used to compute force vector and acceleration vector
                  */
 
-                diff_position = p._position.clone().sub(planet._position);
+                diff_position = planet._position.clone().sub(p._position.clone());
 
 
-                power_dist = diff_position.lengthSq();
+                power_dist = Math.pow((diff_position.clone().x), 2) +  Math.pow((diff_position.clone().y), 2) +  Math.pow((diff_position.clone().y), 2);
 
                 dst = Math.sqrt(power_dist);
 
@@ -56,7 +56,7 @@ class SolarSystem{
 
                 diff_position.divideScalar(dst);
 
-                diff_position.multiplyScalar(force);
+                diff_position.multiplyScalar(-force);
 
                 sum_of_forces.add(diff_position);
 
@@ -139,10 +139,12 @@ function accelerationRK(solarSys, planet, position){
                 this vector is the one used to compute force vector and acceleration vector
              */
 
-            diff_position = p._position.clone().sub(position);
+            diff_position = position.clone().sub(p._position.clone());
 
 
-            power_dist = diff_position.lengthSq();
+            //power_dist = diff_position.lengthSq();
+            power_dist = Math.pow((diff_position.clone().x), 2) +  Math.pow((diff_position.clone().y), 2) +  Math.pow((diff_position.clone().y), 2);
+
 
             dst = Math.sqrt(power_dist);
 
@@ -158,7 +160,7 @@ function accelerationRK(solarSys, planet, position){
 
             diff_position.divideScalar(dst);
 
-            diff_position.multiplyScalar(force);
+            diff_position.multiplyScalar(-force);
 
             sum_of_forces.add(diff_position);
 
@@ -180,75 +182,71 @@ function accelerationRK(solarSys, planet, position){
 function runge_kutta(solarSys, planet, dt) {
 
     //R-K coefficients for position to calculate acceleration
-    var pos1 = new THREE.Vector3();
-    var pos2 = new THREE.Vector3();
-    var pos3 = new THREE.Vector3();
-    var pos4 = new THREE.Vector3();
+    var pos1 ;
+    var pos2;
+    var pos3 ;
+    var pos4 ;
 
     //R-K coefficients for velocity
-    var vel1 = new THREE.Vector3();
-    var vel2 = new THREE.Vector3();
-    var vel3 = new THREE.Vector3();
-    var vel4 = new THREE.Vector3();
+    var vel1;
+    var vel2;
+    var vel3 ;
+    var vel4 ;
 
     //sum of coefficients
-    var next_position = new THREE.Vector3();
-    var next_velocity = new THREE.Vector3();
+    var next_position ;
+    var next_velocity ;
 
 
     /*  in temp variable i save the position coefficient to calculate the new acceleration
         needed by velocity coefficient
      */
 
-    var temp = new THREE.Vector3();
 
+    console.log('dt ' + dt/2 +
+        ' \n RUNGE KUTTA BEFORE earth pos ' + planet._position.x +' ' + planet._position.y + ' ' + planet._position.z +
+        '\n earth vel ' + planet._velocity.x +' ' + planet._velocity.y + ' ' + planet._velocity.z +
+        '\n acceleration ' + planet._accel.x +' ' + planet._accel.y + ' ' + planet._accel.z );
 
-    //K1 for position and velocity
+    pos1 = planet._velocity.clone();
 
-    pos1 = planet._velocity;
-    vel1 =  planet._accel;
+    //vel1 = accelerationRK(solarSys, planet, planet._position.clone());
+    vel1 = planet._accel.clone().cross(planet._position);
 
+    //vel2 = accelerationRK(solarSys, planet, planet._position.clone().add(pos1.clone().multiplyScalar(dt/2)));
+    vel2 = planet._accel.clone().cross(planet._position.clone().add(pos1.clone().multiplyScalar(dt/2)));
+    pos2 = planet._velocity.clone().cross(vel1.clone().multiplyScalar(dt/2));
 
-    //K2 for position and velocity
+    //vel3 = accelerationRK(solarSys, planet, planet._position.clone().add(pos2.clone().multiplyScalar(dt/2)));
+    vel3 = planet._accel.clone().cross(planet._position.clone().add(pos2.clone().multiplyScalar(dt/2)));
+    pos3 = planet._velocity.clone().cross(vel2.clone().multiplyScalar(dt/2));
 
-    pos2 = planet._position.clone().add(pos1.clone().multiplyScalar(dt/2));
-    vel2 = planet._velocity.clone().add(vel1.clone().multiplyScalar(dt/2));
+    //vel4 = accelerationRK(solarSys, planet, planet._position.clone().add(pos3.clone().multiplyScalar(dt)));
+    vel4 = planet._accel.clone().cross(planet._position.clone().add(pos3.clone().multiplyScalar(dt/2)));
+    pos4 = planet._velocity.clone().cross(vel3.clone().multiplyScalar(dt/2));
 
-    temp = pos2;
+    console.log('RUNGE KUTTA AFTER  pos1 ' + pos1.x +' ' + pos1.y + ' ' + pos1.z +
+        '\n  pos2 ' + pos2.x +' ' + pos2.y + ' ' + pos2.z +
+        '\n pos3 ' + pos3.x +' ' + pos3.y + ' ' + pos3.z +
+        ' \n pos4 ' + pos4.x + ' ' + pos4.y + ' ' + pos4.z );
 
-    pos2 = vel2;
-    vel2 = accelerationRK(solarSys, planet, temp);
+    console.log('RUNGE KUTTA AFTER  vel1 ' + vel1.x +' ' + vel1.y + ' ' + vel1.z +
+        '\n  vel2 ' + vel2.x +' ' + vel2.y + ' ' + vel2.z +
+        '\n vel3 ' + vel3.x +' ' + vel3.y + ' ' + vel3.z +
+        ' \n vel4 ' + vel4.x + ' ' + vel4.y + ' ' + vel4.z );
 
-    //K3 for position and velocity
-
-    pos3 = planet._position.clone().add(pos2.clone().multiplyScalar(dt/2));
-    vel3 = planet._velocity.clone().add(vel2.clone().multiplyScalar(dt/2));
-
-    temp = pos3;
-
-    pos3 = vel3;
-    vel3 = accelerationRK(solarSys, planet, temp);
-
-    //K4 for position and velocity
-
-    pos4 = planet._position.clone().add(pos3.clone().multiplyScalar(dt));
-    vel4 = planet._velocity.clone().add(vel3.clone().multiplyScalar(dt));
-
-    temp = pos4;
-
-    pos4 = vel4;
-    vel4 = accelerationRK(solarSys, planet, temp);
 
 
     //calculate sum of coefficients + old position | old velocity
 
-    next_position = planet._position.clone().add(pos1.clone().add(pos2.clone().multiplyScalar(2)).add(pos3.clone().multiplyScalar(2)).add(pos4.clone()).multiplyScalar(dt/6));
+    next_position = planet._position.clone().add((pos1.clone().add(pos2.clone().multiplyScalar(2)).add(pos3.clone().multiplyScalar(2)).add(pos4.clone())).multiplyScalar(dt/6));
 
-    next_velocity = planet._velocity.clone().add(vel1.clone().add(vel2.clone().multiplyScalar(2)).add(vel3.clone().multiplyScalar(2)).add(vel4.clone()).multiplyScalar(dt/6));
+    next_velocity = planet._velocity.clone().add((vel1.clone().add(vel2.clone().multiplyScalar(2)).add(vel3.clone().multiplyScalar(2)).add(vel4.clone())).multiplyScalar(dt/6));
 
 
     planet._position = next_position;
     planet._velocity = next_velocity;
+
 
     solarSys.acceleration(planet);
     //now need to calculate the new correct acceleration
