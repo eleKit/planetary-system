@@ -1,8 +1,23 @@
+
+
+
 //TODO need to initialize the camera
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 camera.position.z = 50;
 
+
+
+var controls = new THREE.TrackballControls( camera );
+controls.rotateSpeed = 1.0;
+controls.zoomSpeed = 1.2;
+controls.panSpeed = 0.8;
+controls.noZoom = false;
+controls.noPan = false;
+controls.staticMoving = true;
+controls.dynamicDampingFactor = 0.3;
+controls.keys = [ 65, 83, 68 ];
+controls.addEventListener( 'change', render );
 
 
 
@@ -24,6 +39,7 @@ renderer.setClearColor( 0xd2d2d2, 1 );
 
 document.body.appendChild( renderer.domElement );
 
+window.addEventListener( 'resize', onWindowResize, false );
 
 
 //Load planet texture
@@ -56,19 +72,39 @@ scene.add(light);
 
 
 
-var render = function () {
-    requestAnimationFrame( render );
+
+var animate = function () {
+
+    render();
+    requestAnimationFrame( animate );
+
 
     earth.rotation.x += 0.005;
     earth.rotation.y += 0.005;
 
-    renderer.render( scene, camera );
+    controls.update();
 
 };
 
 
 
-render();
+animate();
+
+
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    controls.handleResize();
+    render();
+}
+
+
+function render() {
+    renderer.render( scene, camera );
+}
+
 
 
 //light in the scene
