@@ -186,20 +186,23 @@ class CelestialBody {
 
 function main() {
 
-
-    var sun = new CelestialBody(10, 6, new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0));
-    var earth = new CelestialBody(1, 6, new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 3.1622776602, 0));
+    var sun = new CelestialBody(100, 6, new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0));
+    var earth = new CelestialBody(1, 6, new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 10, 0));
 
     var solarSys = new SolarSystem([sun, earth]);
 
+    let acc = solarSys.accelerationRK(earth, earth._position)
 
-    const dt = 0.01986917653;
+    console.log('acceleration' + acc.x.toFixed(3) + ' ' + acc.y.toFixed(3) + ' ' + acc.z.toFixed(3) );
 
-    for (let i = 0; i < 100; i++) {
+
+    const dt = 0.001745329252;
+
+    for (let i = 0; i < 360; i++) {
 
 
         solarSys.runge_kutta(earth, dt);
-        console.log('t= ' + dt*(i+1) + '\n earth pos ' + earth._position.x.toFixed(3) + ' ' + earth._position.y.toFixed(3) + ' ' + earth._position.z.toFixed(3) +
+        console.log('t= ' + i + '\n earth pos ' + earth._position.x.toFixed(3) + ' ' + earth._position.y.toFixed(3) + ' ' + earth._position.z.toFixed(3) +
         '\n earth vel ' + earth._velocity.x.toFixed(3) + ' ' + earth._velocity.y.toFixed(3) + ' ' + earth._velocity.z.toFixed(3) +
         ' \n sun pos ' + sun._position.x.toFixed(3) + ' ' + sun._position.y.toFixed(3) + ' ' + sun._position.z.toFixed(3));
     }
