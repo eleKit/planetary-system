@@ -1,7 +1,5 @@
 
 
-
-//TODO need to initialize the camera
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 camera.position.z = 50;
@@ -43,19 +41,31 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 
 //Load planet texture
-var texture = new THREE.TextureLoader().load( 'planets_textures/2k_earth_daymap.jpg');
+var earth_texture = new THREE.TextureLoader().load( 'planets_textures/2k_earth_daymap.jpg');
+
+var moon_texture = new THREE.TextureLoader().load( 'planets_textures/2k_moon.jpg');
 
 
 //SphereBufferGeometry(radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength)
 var geometry = new THREE.SphereBufferGeometry( 10, 20, 20, 0, 6.3, 0, 3.1 );
-var material = new THREE.MeshPhongMaterial( { map: texture, overdraw: 0.5 } );
+var material = new THREE.MeshPhongMaterial( { map: earth_texture, overdraw: 0.5 } );
 var earth = new THREE.Mesh( geometry, material );
-earth.position.set(5, 0, -1);
+earth.position.set(5, 0, 0);
 
 earth.castShadow = true; //default is false
 earth.receiveShadow = false; //default
 
 scene.add( earth );
+
+var moon_geometry = new THREE.SphereBufferGeometry( 5, 20, 20, 0, 6.3, 0, 3.1 );
+var moon_material = new THREE.MeshPhongMaterial( { map: moon_texture, overdraw: 0.5 } );
+var moon = new THREE.Mesh( moon_geometry, moon_material );
+moon.position.set(-10, -20, -2);
+
+moon.castShadow = true; //default is false
+moon.receiveShadow = false; //default
+
+scene.add( moon );
 
 
 
@@ -81,6 +91,9 @@ var animate = function () {
 
     earth.rotation.x += 0.005;
     earth.rotation.y += 0.005;
+
+    moon.rotation.x += 0.005;
+    moon.rotation.y += 0.005;
 
     controls.update();
 
