@@ -5,8 +5,8 @@ class SolarSystem {
 
     constructor(planets) {
         this._planets = planets;
-        //this._G = 6.674e-11;
-        this._G = 1.0;
+        this._G = 6.674e-11;
+        //this._G = 1.0;
     }
 
 
@@ -46,6 +46,14 @@ class SolarSystem {
     }
 
 
+    updateVelocityVerlet(dt){
+        for (var p of this._planets) {
+            this.velocity_verlet(p, dt);
+        }
+
+    }
+
+
 }
 
 
@@ -73,12 +81,11 @@ class CelestialBody {
         this class contains the velocity and the position as two THREE.Vector3 elements
      */
 
-    constructor(name, mass, radius, position, velocity) {
+    constructor(name, mass, position, velocity) {
         this.name = name;
         this._mass = mass;
-        this._radius = radius;
-        this._position = position.clone();
-        this._velocity = velocity.clone();
+        this._position = position;
+        this._velocity = velocity;
     }
 
 

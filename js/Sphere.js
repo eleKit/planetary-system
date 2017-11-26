@@ -23,7 +23,6 @@ var scene = new THREE.Scene();
 
 
 
-
 var renderer = new THREE.WebGLRenderer();
 
 renderer.shadowMap.enabled = true;
@@ -40,32 +39,25 @@ document.body.appendChild( renderer.domElement );
 window.addEventListener( 'resize', onWindowResize, false );
 
 
-//Load planet texture
-var earth_texture = new THREE.TextureLoader().load( 'planets_textures/2k_earth_daymap.jpg');
-
-var moon_texture = new THREE.TextureLoader().load( 'planets_textures/2k_moon.jpg');
 
 
-//SphereBufferGeometry(radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength)
-var geometry = new THREE.SphereBufferGeometry( 10, 20, 20, 0, 6.3, 0, 3.1 );
-var material = new THREE.MeshPhongMaterial( { map: earth_texture, overdraw: 0.5 } );
-var earth = new THREE.Mesh( geometry, material );
-earth.position.set(5, 0, 0);
 
-earth.castShadow = true; //default is false
-earth.receiveShadow = false; //default
+var planet_earth = new THREE.Mesh( earth.earth_geometry, earth.earth_material );
+planet_earth.position.set(5, 0, 0);
 
-scene.add( earth );
+planet_earth.castShadow = true; //default is false
+planet_earth.receiveShadow = false; //default
 
-var moon_geometry = new THREE.SphereBufferGeometry( 5, 20, 20, 0, 6.3, 0, 3.1 );
-var moon_material = new THREE.MeshPhongMaterial( { map: moon_texture, overdraw: 0.5 } );
-var moon = new THREE.Mesh( moon_geometry, moon_material );
-moon.position.set(-10, -20, -2);
+scene.add( planet_earth );
 
-moon.castShadow = true; //default is false
-moon.receiveShadow = false; //default
 
-scene.add( moon );
+var planet_moon = new THREE.Mesh( moon.moon_geometry, moon.moon_material );
+planet_moon.position.set(-10, -20, -2);
+
+planet_moon.castShadow = true; //default is false
+planet_moon.receiveShadow = false; //default
+
+scene.add( planet_moon );
 
 
 
@@ -81,21 +73,19 @@ scene.add(light);
 
 
 
-
-
 var animate = function () {
 
     render();
     requestAnimationFrame( animate );
 
 
-    earth.rotation.x += 0.005;
-    earth.rotation.y += 0.005;
+    planet_earth.rotation.x += 0.005;
+    planet_earth.rotation.y += 0.005;
 
-    moon.rotation.x += 0.005;
-    moon.rotation.y += 0.005;
+    planet_moon.rotation.x += 0.005;
+    planet_moon.rotation.y += 0.005;
 
-    moon.position.x += 0.3;
+    planet_moon.position.x += 0.03;
     //moon.position += moon.update_position.clone().sub(moon.position);
 
     controls.update();
