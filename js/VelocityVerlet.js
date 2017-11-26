@@ -10,15 +10,6 @@ class SolarSystem {
     }
 
 
-    /*  METHODS
-        used to compute the position at any t of planets in my solar system
-     */
-
-
-    /*  this function computes the acceleration for one planet in my solar system
-        it uses the G Gravitational constant
-     */
-
     acceleration(planet) {
         var diff_position;
         var sum_of_forces = new THREE.Vector3(0, 0, 0);
@@ -79,9 +70,7 @@ class CelestialBody {
 
     /*  mass and radius are float
 
-        this class contains the state of a planet,
-        it contains the velocity and the position as two THREE.Vector3 elements
-        also accel is the acceleration and is of type THREE.Vector3
+        this class contains the velocity and the position as two THREE.Vector3 elements
      */
 
     constructor(name, mass, radius, position, velocity) {
@@ -124,11 +113,14 @@ function main() {
 
     console.log('acceleration' + acc.x.toFixed(3) + ' ' + acc.y.toFixed(3) + ' ' + acc.z.toFixed(3));
 
+    /*
+        T = 2pi/10= 0,6283185307 , sqrt(M/r * G) = v,  M = 100, m = 1 , r = 1, G = 1
+     */
 
     const dt = 0.001;
     var positions = [];
 
-    for (let i = 0; i < 36000; i++) {
+    for (let i = 0; i < 628; i++) {
 
 
         solarSys.velocity_verlet(earth, dt);
