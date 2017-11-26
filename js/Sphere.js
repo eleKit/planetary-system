@@ -95,6 +95,9 @@ var animate = function () {
     moon.rotation.x += 0.005;
     moon.rotation.y += 0.005;
 
+    moon.position.x += 0.3;
+    //moon.position += moon.update_position.clone().sub(moon.position);
+
     controls.update();
 
 };
