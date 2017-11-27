@@ -3,20 +3,32 @@
 
 const x = 1e+8;
 
+var STARS =  Object.freeze({
+    INITIAL_POSITION : {},
+    RADIUS : 6.96e+8,
+    WIDTH: 20,
+    HEIGHT: 20,
+    PHI_START : 0,
+    PHI_LENGTH  : 6.3,
+    THETA_STARTS : 0,
+    THETA_LENGTH : {}
+});
+
+
 
 var SUN =  Object.freeze({
     MASS : 1.98e+30,
-    INITIAL_POSITION : {},
-    INITIAL_VELOCITY : {},
+    INITIAL_POSITION : new THREE.Vector3(3.004034679675901E+05,  8.893895790660630E+05, -1.872349879910174E+04),
+    INITIAL_VELOCITY : new THREE.Vector3(-9.628223666463159E-03,  9.111435904403897E-03,  2.304333710108448E-04),
     RADIUS : 6.96e+8,
     ANGLE: 0.0,
     ROTATION : {},
     WIDTH: 20,
     HEIGHT: 20,
     PHI_START : 0,
-    PI_LENGTH  : 6.3,
+    PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 3.1
+    THETA_LENGTH : 4
 });
 
 
@@ -32,7 +44,7 @@ var MERCURY = Object.freeze({
     PHI_START : 0,
     PI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 3.1
+    THETA_LENGTH : 4
 });
 
 var EARTH = Object.freeze({
@@ -45,9 +57,9 @@ var EARTH = Object.freeze({
     WIDTH: 20,
     HEIGHT: 20,
     PHI_START : 0,
-    PI_LENGTH  : 6.3,
+    PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 3.1
+    THETA_LENGTH : 3.4
 });
 
 
@@ -62,9 +74,9 @@ var MARS = Object.freeze({
     WIDTH: 20,
     HEIGHT: 20,
     PHI_START : 0,
-    PI_LENGTH  : 6.3,
+    PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 3.1
+    THETA_LENGTH : 4
 });
 
 
@@ -78,9 +90,9 @@ var VENUS = Object.freeze({
     WIDTH: 20,
     HEIGHT: 20,
     PHI_START : 0,
-    PI_LENGTH  : 6.3,
+    PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 3.1
+    THETA_LENGTH : 4
 });
 
 var JUPITER = Object.freeze({
@@ -93,9 +105,9 @@ var JUPITER = Object.freeze({
     WIDTH: 20,
     HEIGHT: 20,
     PHI_START : 0,
-    PI_LENGTH  : 6.3,
+    PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 3.1
+    THETA_LENGTH : 4
 });
 
 var SATURN = Object.freeze({
@@ -108,9 +120,9 @@ var SATURN = Object.freeze({
     WIDTH: 20,
     HEIGHT: 20,
     PHI_START : 0,
-    PI_LENGTH  : 6.3,
+    PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 3.1
+    THETA_LENGTH : 4
 });
 
 
@@ -124,9 +136,9 @@ var URANUS = Object.freeze({
     WIDTH: 20,
     HEIGHT: 20,
     PHI_START : 0,
-    PI_LENGTH  : 6.3,
+    PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 3.1
+    THETA_LENGTH : 4
 });
 
 var NEPTUNE = Object.freeze({
@@ -139,57 +151,57 @@ var NEPTUNE = Object.freeze({
     WIDTH: 20,
     HEIGHT: 20,
     PHI_START : 0,
-    PI_LENGTH  : 6.3,
+    PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 3.1
+    THETA_LENGTH : 4
 });
 
 //SATELLITES
 
 var MOON = Object.freeze({
     MASS : 7.35e+22,
-    INITIAL_POSITION : {},
-    INITIAL_VELOCITY : {},
+    INITIAL_POSITION : new THREE.Vector3( 6.610806275545052E+07,  1.329990314966149E+08, -2.932729892215878E+04),
+    INITIAL_VELOCITY : new THREE.Vector3(-2.668926267105926E+01,  1.393861699733575E+01, -8.463352361108001E-02),
     RADIUS : 1.74e+6,
     ANGLE: 0.0269199584,
     ROTATION : {},
     WIDTH: 20,
     HEIGHT: 20,
     PHI_START : 0,
-    PI_LENGTH  : 6.3,
+    PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 3.1
+    THETA_LENGTH : 4
 });
 
 //Marth
 var DEIMOS = Object.freeze({
     MASS : 1.48e+15,
-    INITIAL_POSITION : {},
-    INITIAL_VELOCITY : {},
+    INITIAL_POSITION : new THREE.Vector3(-2.468592298028901E+08,  1.100983547791736E+07,  6.251898982874209E+06),
+    INITIAL_VELOCITY : new THREE.Vector3(-7.134520813328514E-01, -2.099460150431662E+01, -6.842543341183038E-02),
     RADIUS : 6.2e+3,
-    ANGLE: {value: 1, name: "Medium", code: "M"},
+    ANGLE: 0,
     ROTATION : {},
     WIDTH: 20,
     HEIGHT: 20,
     PHI_START : 0,
-    PI_LENGTH  : 6.3,
+    PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 3.1
+    THETA_LENGTH : 4
 });
 
 var PHOBOS = Object.freeze({
     MASS : 1.07e+16,
-    INITIAL_POSITION : {},
-    INITIAL_VELOCITY : {},
+    INITIAL_POSITION : new THREE.Vector3(-2.468830718516514E+08,  1.100429286929242E+07,  6.262272674551954E+06),
+    INITIAL_VELOCITY : new THREE.Vector3(-1.583812963883461E+00, -2.351841345324184E+01,  1.781445423352075E-01),
     RADIUS : 11.1e+3,
     ANGLE: 0,
     ROTATION : {},
     WIDTH: 20,
     HEIGHT: 20,
     PHI_START : 0,
-    PI_LENGTH  : 6.3,
+    PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 3.1
+    THETA_LENGTH : 4
 });
 
 
