@@ -28,7 +28,7 @@ var SUN =  Object.freeze({
     PHI_START : 0,
     PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 4
+    THETA_LENGTH : 3.3
 });
 
 
@@ -44,7 +44,7 @@ var MERCURY = Object.freeze({
     PHI_START : 0,
     PI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 4
+    THETA_LENGTH : 3.3
 });
 
 var EARTH = Object.freeze({
@@ -76,7 +76,7 @@ var MARS = Object.freeze({
     PHI_START : 0,
     PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 4
+    THETA_LENGTH : 3.3
 });
 
 
@@ -92,7 +92,7 @@ var VENUS = Object.freeze({
     PHI_START : 0,
     PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 4
+    THETA_LENGTH : 3.3
 });
 
 var JUPITER = Object.freeze({
@@ -107,7 +107,7 @@ var JUPITER = Object.freeze({
     PHI_START : 0,
     PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 4
+    THETA_LENGTH : 3.3
 });
 
 var SATURN = Object.freeze({
@@ -122,7 +122,7 @@ var SATURN = Object.freeze({
     PHI_START : 0,
     PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 4
+    THETA_LENGTH : 3.3
 });
 
 
@@ -138,7 +138,7 @@ var URANUS = Object.freeze({
     PHI_START : 0,
     PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 4
+    THETA_LENGTH : 3.3
 });
 
 var NEPTUNE = Object.freeze({
@@ -153,7 +153,7 @@ var NEPTUNE = Object.freeze({
     PHI_START : 0,
     PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 4
+    THETA_LENGTH : 3.3
 });
 
 //SATELLITES
@@ -170,7 +170,7 @@ var MOON = Object.freeze({
     PHI_START : 0,
     PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 4
+    THETA_LENGTH : 3.3
 });
 
 //Marth
@@ -186,7 +186,7 @@ var DEIMOS = Object.freeze({
     PHI_START : 0,
     PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 4
+    THETA_LENGTH : 3.3
 });
 
 var PHOBOS = Object.freeze({
@@ -201,7 +201,7 @@ var PHOBOS = Object.freeze({
     PHI_START : 0,
     PHI_LENGTH  : 6.3,
     THETA_STARTS : 0,
-    THETA_LENGTH : 4
+    THETA_LENGTH : 3.3
 });
 
 

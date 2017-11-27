@@ -1,4 +1,4 @@
-const scale = 1e-5;
+const scale = 1e-4;
 
 const dt = 0.0001;
 
@@ -90,6 +90,10 @@ var neptune = {
 
 
 };
+
+function scalePosition(planet){
+    return planet.position.clone().multiplyScalar(scale);
+}
 
 
 

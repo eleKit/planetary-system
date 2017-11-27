@@ -1,8 +1,10 @@
 
 
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 100000000);
 
-camera.position.z = 50;
+camera.position.z = 50000;
+
+
 
 
 
@@ -43,7 +45,7 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 
 var planet_earth = new THREE.Mesh( earth.earth_geometry, earth.earth_material );
-planet_earth.position.set(5, 0, 0);
+planet_earth.position.add(scalePosition(earth.earth_physics));
 
 planet_earth.castShadow = true; //default is false
 planet_earth.receiveShadow = false; //default
@@ -51,13 +53,33 @@ planet_earth.receiveShadow = false; //default
 scene.add( planet_earth );
 
 
-var planet_moon = new THREE.Mesh( moon.moon_geometry, moon.moon_material );
-planet_moon.position.set(-10, -20, -2);
+THREE.Vector3.prototype.toString = function() {
+    return '(' + this.x.toFixed(3) + ', ' + this.y.toFixed(3) + ', ' + this.z.toFixed(3) + ')';
+};
 
-planet_moon.castShadow = true; //default is false
-planet_moon.receiveShadow = false; //default
 
-scene.add( planet_moon );
+
+var planet_mercury = new THREE.Mesh( mercury.mercury_geometry, mercury.mercury_material );
+planet_mercury.position.add(scalePosition(mercury.mercury_physics));
+
+planet_mercury.castShadow = true; //default is false
+planet_mercury.receiveShadow = false; //default
+
+scene.add( planet_mercury );
+
+
+
+var planet_sun = new THREE.Mesh( sun.sun_geometry, sun.sun_material );
+planet_sun.position.add(scalePosition(sun.sun_physics));
+
+planet_sun.castShadow = true; //default is false
+planet_sun.receiveShadow = false; //default
+
+scene.add( planet_sun );
+
+console.log('earth radius ' + (EARTH.RADIUS * scale) + ' earth position ' + planet_earth.position.toString());
+console.log('sun radius ' + (SUN.RADIUS * scale) + ' moon position ' + planet_sun.position.toString());
+console.log('mercury radius ' + (MERCURY.RADIUS * scale) + ' moon position ' + planet_mercury.position.toString());
 
 
 
@@ -82,10 +104,12 @@ var animate = function () {
     planet_earth.rotation.x += 0.005;
     planet_earth.rotation.y += 0.005;
 
-    planet_moon.rotation.x += 0.005;
+
+   /* planet_moon.rotation.x += 0.005;
     planet_moon.rotation.y += 0.005;
 
-    planet_moon.position.x += 0.03;
+    planet_moon.position.x -= 0.0003;
+    */
     //moon.position += moon.update_position.clone().sub(moon.position);
 
     controls.update();
