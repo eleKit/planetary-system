@@ -32,13 +32,13 @@ var saturn = {
 
 var sun = {
     sun_geometry : new THREE.SphereBufferGeometry( SUN.RADIUS * scale, SUN.WIDTH, SUN.HEIGHT, SUN.PHI_START, SUN.PHI_LENGTH, SUN.THETA_STARTS, SUN.THETA_LENGTH ),
-    sun_material : new THREE.MeshPhongMaterial( { map: sun_texture, overdraw: 0.5 } ),
+    sun_material : new THREE.MeshPhongMaterial( { map: sun_texture, overdraw: 0.5, emissive: 0xff8141, emissiveIntensity: 1 } ),
     sun_physics : new CelestialBody('Sun', SUN.MASS, SUN.INITIAL_POSITION, SUN.INITIAL_VELOCITY )
 };
 
 var earth = {
     earth_geometry : new THREE.SphereBufferGeometry( EARTH.RADIUS * scale, EARTH.WIDTH, EARTH.HEIGHT, EARTH.PHI_START, EARTH.PHI_LENGTH, EARTH.THETA_STARTS, EARTH.THETA_LENGTH ),
-    earth_material : new THREE.MeshPhongMaterial( { color: 0xf7f7f7, map: earth_texture, overdraw: 0.5 } ),
+    earth_material : new THREE.MeshPhongMaterial( { color: 0xf7f7f7, map: earth_texture, overdraw: 0.5, shininess: 5 } ),
     earth_physics : new CelestialBody('Sun', EARTH.MASS, EARTH.INITIAL_POSITION, EARTH.INITIAL_VELOCITY )
 };
 

@@ -2,11 +2,6 @@
 
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 100000000);
 
-camera.position.z = 50000;
-
-
-
-
 
 var controls = new THREE.TrackballControls( camera );
 controls.rotateSpeed = 1.0;
@@ -77,6 +72,12 @@ planet_sun.receiveShadow = false; //default
 
 scene.add( planet_sun );
 
+
+
+controls.target = planet_earth.position;
+
+
+
 console.log('earth radius ' + (EARTH.RADIUS * scale) + ' earth position ' + planet_earth.position.toString());
 console.log('sun radius ' + (SUN.RADIUS * scale) + ' moon position ' + planet_sun.position.toString());
 console.log('mercury radius ' + (MERCURY.RADIUS * scale) + ' moon position ' + planet_mercury.position.toString());
@@ -85,11 +86,11 @@ console.log('mercury radius ' + (MERCURY.RADIUS * scale) + ' moon position ' + p
 
 scene.add(new THREE.AmbientLight(0x333333));
 
-//TODO  light must be in the sun position
 
-var light = new THREE.DirectionalLight( 0xffffff, 1);
-light.position.set(-200,200,200);
-scene.add(light);
+
+var point_light = new THREE.PointLight( 0xF7F7F7, 1.3, 0, 2 );
+point_light.position = planet_sun.position.clone();
+scene.add( point_light );
 
 
 
