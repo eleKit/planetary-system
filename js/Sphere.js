@@ -1,7 +1,10 @@
+var test_geomerty = new THREE.SphereBufferGeometry( 6, 20, 20, 0, 6.3, 0, 3.3 );
 
 
-var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 100000000);
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
 
+//TODO pay attention, if you remove camera location trackball controls stops working, otherwise you must fix a target
+camera.position.z = 50;
 
 var controls = new THREE.TrackballControls( camera );
 controls.rotateSpeed = 1.0;
@@ -13,7 +16,6 @@ controls.staticMoving = true;
 controls.dynamicDampingFactor = 0.3;
 controls.keys = [ 65, 83, 68 ];
 controls.addEventListener( 'change', render );
-
 
 
 var scene = new THREE.Scene();
@@ -39,8 +41,8 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 
 
-var planet_earth = new THREE.Mesh( earth.earth_geometry, earth.earth_material );
-planet_earth.position.add(scalePosition(earth.earth_physics));
+var planet_earth = new THREE.Mesh( test_geomerty, earth.earth_material );
+planet_earth.position.addScalar(10);
 
 planet_earth.castShadow = true; //default is false
 planet_earth.receiveShadow = false; //default
@@ -53,9 +55,10 @@ THREE.Vector3.prototype.toString = function() {
 };
 
 
+controls.target = planet_earth.position;
 
-var planet_mercury = new THREE.Mesh( mercury.mercury_geometry, mercury.mercury_material );
-planet_mercury.position.add(scalePosition(mercury.mercury_physics));
+var planet_mercury = new THREE.Mesh( test_geomerty, mercury.mercury_material );
+planet_mercury.position.addScalar(-10);
 
 planet_mercury.castShadow = true; //default is false
 planet_mercury.receiveShadow = false; //default
@@ -64,17 +67,12 @@ scene.add( planet_mercury );
 
 
 
-var planet_sun = new THREE.Mesh( sun.sun_geometry, sun.sun_material );
-planet_sun.position.add(scalePosition(sun.sun_physics));
+var planet_sun = new THREE.Mesh( test_geomerty, sun.sun_material );
 
 planet_sun.castShadow = true; //default is false
 planet_sun.receiveShadow = false; //default
 
 scene.add( planet_sun );
-
-
-
-controls.target = planet_earth.position;
 
 
 
