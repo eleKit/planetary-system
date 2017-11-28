@@ -38,7 +38,10 @@ document.body.appendChild( renderer.domElement );
 
 window.addEventListener( 'resize', onWindowResize, false );
 
+//background
 
+var background = new THREE.Mesh(scene_bg.bg_geometry, scene_bg.bg_material);
+scene.add(background);
 
 
 
@@ -75,9 +78,9 @@ console.log(' earth position ' + planet_earth.position.toString());
 console.log('sun position ' + planet_sun.position.toString());
 
 
-controls.target = planet_sun.position;
+controls.target = planet_earth.position;
 
-scene.add(new THREE.AmbientLight(0x333333));
+scene.add(new THREE.AmbientLight(0xffffff));
 
 
 
