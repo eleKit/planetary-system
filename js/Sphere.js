@@ -1,5 +1,6 @@
-var test_geomerty = new THREE.SphereBufferGeometry( 6, 20, 20, 0, 6.3, 0, 3.3 );
+var test_geomerty = new THREE.SphereBufferGeometry( 0.3, 20, 20, 0, 6.3, 0, 3.3 );
 
+initializePhysics();
 
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
 
@@ -42,7 +43,7 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 
 var planet_earth = new THREE.Mesh( test_geomerty, earth.earth_material );
-planet_earth.position.addScalar(10);
+planet_earth.position.add(earth.earth_physics.position);
 
 planet_earth.castShadow = true; //default is false
 planet_earth.receiveShadow = false; //default
@@ -55,15 +56,9 @@ THREE.Vector3.prototype.toString = function() {
 };
 
 
-controls.target = planet_earth.position;
 
-var planet_mercury = new THREE.Mesh( test_geomerty, mercury.mercury_material );
-planet_mercury.position.addScalar(-10);
 
-planet_mercury.castShadow = true; //default is false
-planet_mercury.receiveShadow = false; //default
 
-scene.add( planet_mercury );
 
 
 
@@ -76,11 +71,11 @@ scene.add( planet_sun );
 
 
 
-console.log('earth radius ' + (EARTH.RADIUS * scale) + ' earth position ' + planet_earth.position.toString());
-console.log('sun radius ' + (SUN.RADIUS * scale) + ' moon position ' + planet_sun.position.toString());
-console.log('mercury radius ' + (MERCURY.RADIUS * scale) + ' moon position ' + planet_mercury.position.toString());
+console.log(' earth position ' + planet_earth.position.toString());
+console.log('sun position ' + planet_sun.position.toString());
 
 
+controls.target = planet_sun.position;
 
 scene.add(new THREE.AmbientLight(0x333333));
 
@@ -99,9 +94,16 @@ var animate = function () {
     render();
     requestAnimationFrame( animate );
 
+    updatePlanetsPositions();
 
     planet_earth.rotation.x += 0.005;
     planet_earth.rotation.y += 0.005;
+
+    planet_earth.position.add(earth.earth_physics.position.clone().sub(planet_earth.position));
+
+
+    console.log(' earth position rendering ' + planet_earth.position.toString());
+    console.log(' earth position ' + earth.earth_physics.position.toString());
 
 
    /* planet_moon.rotation.x += 0.005;

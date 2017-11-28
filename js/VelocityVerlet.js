@@ -5,7 +5,8 @@ class SolarSystem {
 
     constructor(planets) {
         this._planets = planets;
-        this._G = 6.674e-11;
+        //this._G = 6.674e-11;
+        this._G = 1.0;
     }
 
 
