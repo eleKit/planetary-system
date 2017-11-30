@@ -1,4 +1,4 @@
-var test_geomerty = new THREE.SphereBufferGeometry( 0.3, 20, 20, 0, 6.3, 0, 3.3 );
+var test_geomerty = new THREE.SphereBufferGeometry( 0.1, 20, 20, 0, 6.3, 0, 3.3 );
 
 initializePhysics();
 
@@ -48,6 +48,8 @@ scene.add(background);
 var planet_earth = new THREE.Mesh( test_geomerty, earth.earth_material );
 planet_earth.position.add(earth.earth_physics.position);
 
+planet_earth.rotation.x += 1.5708;
+
 planet_earth.castShadow = true; //default is false
 planet_earth.receiveShadow = false; //default
 
@@ -57,9 +59,6 @@ scene.add( planet_earth );
 THREE.Vector3.prototype.toString = function() {
     return '(' + this.x.toFixed(3) + ', ' + this.y.toFixed(3) + ', ' + this.z.toFixed(3) + ')';
 };
-
-
-
 
 
 
@@ -78,7 +77,7 @@ console.log(' earth position ' + planet_earth.position.toString());
 console.log('sun position ' + planet_sun.position.toString());
 
 
-controls.target = planet_earth.position;
+controls.target = planet_sun.position;
 
 scene.add(new THREE.AmbientLight(0xffffff));
 
@@ -99,8 +98,8 @@ var animate = function () {
 
     updatePlanetsPositions();
 
-    planet_earth.rotation.x += 0.005;
-    planet_earth.rotation.y += 0.005;
+    //planet_earth.rotation.x += 0.005;
+    //planet_earth.rotation.y += 0.005;
 
     planet_earth.position.add(earth.earth_physics.position.clone().sub(planet_earth.position));
 

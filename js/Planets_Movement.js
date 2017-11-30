@@ -1,6 +1,6 @@
 const scale = 1e-4;
 
-const dt = 0.001;
+const dt = 0.0005;
 
 var solarSys;
 
