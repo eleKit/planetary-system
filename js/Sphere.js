@@ -44,6 +44,11 @@ var background = new THREE.Mesh(scene_bg.bg_geometry, scene_bg.bg_material);
 scene.add(background);
 
 
+//draw axes
+var axesHelper = new THREE.AxesHelper();
+scene.add(axesHelper);
+
+
 
 var planet_earth = new THREE.Mesh( test_geomerty, earth.earth_material );
 planet_earth.position.add(earth.earth_physics.position);
@@ -54,6 +59,7 @@ planet_earth.castShadow = true; //default is false
 planet_earth.receiveShadow = false; //default
 
 scene.add( planet_earth );
+
 
 
 THREE.Vector3.prototype.toString = function() {
@@ -102,6 +108,7 @@ var animate = function () {
     //planet_earth.rotation.y += 0.005;
 
     planet_earth.position.add(earth.earth_physics.position.clone().sub(planet_earth.position));
+
 
 
     console.log(' earth position rendering ' + planet_earth.position.toString());
