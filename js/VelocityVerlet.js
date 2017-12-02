@@ -32,22 +32,30 @@ class SolarSystem {
         return sum_of_forces.divideScalar(planet._mass);
     }
 
-    velocity_verlet(planet, dt){
-
-        var partial_velocity = new THREE.Vector3();
-
-        partial_velocity = planet.velocity.clone().add(this.acceleration(planet).clone().multiplyScalar(dt/2));
-
-        planet.position = planet.position.clone().add(partial_velocity.clone().multiplyScalar(dt));
-
-        planet.velocity = partial_velocity.clone().add(this.acceleration(planet).clone().multiplyScalar(dt/2));
-
-
-    }
 
     updateVelocityVerlet(dt){
-        for (var p of this._planets) {
-            this.velocity_verlet(p, dt);
+
+        var new_planet_state = {};
+
+
+        for (var planet of this._planets) {
+            var new_pos;
+            var new_vel;
+
+            var partial_velocity = new THREE.Vector3();
+
+            partial_velocity = planet.velocity.clone().add(this.acceleration(planet).clone().multiplyScalar(dt/2));
+
+            new_pos = planet.position.clone().add(partial_velocity.clone().multiplyScalar(dt));
+            new_vel = partial_velocity.clone().add(this.acceleration(planet).clone().multiplyScalar(dt/2));
+
+            new_planet_state[planet.name] = {'position': new_pos, 'velocity': new_vel};
+
+        }
+
+        for (var planet of this._planets) {
+            planet.position = new_planet_state[planet.name].position;
+            planet.velocity = new_planet_state[planet.name].velocity;
         }
 
     }
