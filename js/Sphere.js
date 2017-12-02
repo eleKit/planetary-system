@@ -49,7 +49,6 @@ scene.add(axesHelper);
 
 for(const p_name in planets) {
     const planet = planets[p_name];
-    console.log(planet.name);
     planet.mesh = new THREE.Mesh( planet.geometry, planet.material );
     planet.mesh.position.copy(scalePosition(planet.physics));
 
@@ -99,6 +98,16 @@ var animate = function () {
         + '\n (gravitational=' + solarSys.gravitationalEnergy(planets['earth'].physics) + ') '
     );
     */
+
+    let moon = planets['moon'];
+    let earth = planets['earth'];
+
+    if(moon.physics.position.sub(earth.physics.position).length() < EARTH.RADIUS) {
+        console.log("FUCK!! MOON HAS COLLAPSED INTO EARTH!!!");
+    } else {
+        console.log("Earth-moon distance: " + moon.physics.position.sub(earth.physics.position).length());
+    }
+
 
     controls.update();
 

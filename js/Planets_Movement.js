@@ -1,7 +1,7 @@
 const universe_scale = 1e-10;
-const radius_scale = universe_scale*100;
+const radius_scale = universe_scale * 10;
 
-const dt = 3600;
+const dt = 60;
 
 var solarSys;
 
@@ -130,7 +130,7 @@ function initializePhysics(){
 
 
 function updatePlanetsPositions(){
-    solarSys.updateVelocityVerlet(dt);
+    solarSys.updateVelocityVerlet(dt, 12);
 }
 
 

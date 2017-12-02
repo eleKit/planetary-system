@@ -33,29 +33,32 @@ class SolarSystem {
     }
 
 
-    updateVelocityVerlet(dt) {
+    updateVelocityVerlet(dt, num_ticks) {
 
-        var new_planet_state = {};
+        for (var i=0; i<num_ticks; i++)
+        {
+            var new_planet_state = {};
 
 
-        for (var planet of this._planets) {
-            var new_pos;
-            var new_vel;
+            for (var planet of this._planets) {
+                var new_pos;
+                var new_vel;
 
-            var partial_velocity = new THREE.Vector3();
+                var partial_velocity = new THREE.Vector3();
 
-            partial_velocity = planet.velocity.clone().add(this.acceleration(planet).clone().multiplyScalar(dt / 2));
+                partial_velocity = planet.velocity.clone().add(this.acceleration(planet).clone().multiplyScalar(dt / 2));
 
-            new_pos = planet.position.clone().add(partial_velocity.clone().multiplyScalar(dt));
-            new_vel = partial_velocity.clone().add(this.acceleration(planet).clone().multiplyScalar(dt / 2));
+                new_pos = planet.position.clone().add(partial_velocity.clone().multiplyScalar(dt));
+                new_vel = partial_velocity.clone().add(this.acceleration(planet).clone().multiplyScalar(dt / 2));
 
-            new_planet_state[planet.name] = {'position': new_pos, 'velocity': new_vel};
+                new_planet_state[planet.name] = {'position': new_pos, 'velocity': new_vel};
 
-        }
+            }
 
-        for (var planet of this._planets) {
-            planet.position = new_planet_state[planet.name]['position'];
-            planet.velocity = new_planet_state[planet.name]['velocity'];
+            for (var planet of this._planets) {
+                planet.position = new_planet_state[planet.name]['position'];
+                planet.velocity = new_planet_state[planet.name]['velocity'];
+            }
         }
 
     }
@@ -114,7 +117,6 @@ class CelestialBody {
         this._position = position.clone();
         this._velocity = velocity.clone();
     }
-
 
 }
 
