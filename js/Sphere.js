@@ -3,7 +3,7 @@ initializePhysics();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
 
 //TODO pay attention, if you remove camera location trackball controls stops working, otherwise you must fix a target
-camera.position.z = 5;
+camera.position.z = 50;
 
 var controls = new THREE.TrackballControls( camera );
 controls.rotateSpeed = 1.0;
@@ -98,15 +98,6 @@ var animate = function () {
         + '\n (gravitational=' + solarSys.gravitationalEnergy(planets['earth'].physics) + ') '
     );
     */
-
-    let moon = planets['moon'];
-    let earth = planets['earth'];
-
-    if(moon.physics.position.sub(earth.physics.position).length() < EARTH.RADIUS) {
-        console.log("FUCK!! MOON HAS COLLAPSED INTO EARTH!!!");
-    } else {
-        console.log("Earth-moon distance: " + moon.physics.position.sub(earth.physics.position).length());
-    }
 
 
     controls.update();

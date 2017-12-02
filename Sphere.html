@@ -1,17 +1,41 @@
 <html>
 <head>
     <title>My first three.js app</title>
-    <style>
-        body { margin: 0; }
-        canvas { width: 100%; height: 100% }
-    </style>
+    <link rel="stylesheet" href="css/planetarium.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
 <body>
-<script src="js/lib/three.min.js"></script>
-<script src="js/lib/TrackballControls.js"></script>
-<script src="js/P_Enum.js"></script>
-<script src="js/VelocityVerlet.js"></script>
-<script src="js/Planets_Movement.js"></script>
-<script src="js/Sphere.js"></script>
+<div>
+    <style>
+        body { margin: 0; background-color: black; }
+    </style>
+    <div id="Commands" class="form-inline">
+        <div class="form-group">
+            <button id="Sun" class="btn btn-outline-light" type="button">sun</button>
+            <button id="Earth" class="btn btn-outline-light" type="button">earth</button>
+            <button id="Mercury" class="btn btn-outline-light" type="button">mercury</button>
+            <button id="Mars" class="btn btn-outline-light" type="button">mars</button>
+            <button id="Venus" class="btn btn-outline-light" type="button">venus</button>
+            <button id="Jupiter" class="btn btn-outline-light" type="button">jupiter</button>
+            <button id="Saturn" class="btn btn-outline-light" type="button">saturn</button>
+            <button id="Uranus" class="btn btn-outline-light" type="button">uranus</button>
+            <button id="Neptune" class="btn btn-outline-light" type="button">neptune</button>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <script src="js/lib/three.min.js"></script>
+    <script src="js/lib/TrackballControls.js"></script>
+    <script src="js/P_Enum.js"></script>
+    <script src="js/VelocityVerlet.js"></script>
+    <script src="js/Planets_Movement.js"></script>
+    <script src="js/Sphere.js"></script>
+    <script src="js/buttons.js"></script>
 </body>
 </html>
