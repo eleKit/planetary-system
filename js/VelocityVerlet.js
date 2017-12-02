@@ -5,8 +5,8 @@ class SolarSystem {
 
     constructor(planets) {
         this._planets = planets;
-        //this._G = 6.674e-11;
-        this._G = 1.0;
+        this._G = 6.67408e-11;
+        //this._G = 1.0;
     }
 
 
@@ -33,7 +33,7 @@ class SolarSystem {
     }
 
 
-    updateVelocityVerlet(dt){
+    updateVelocityVerlet(dt) {
 
         var new_planet_state = {};
 
@@ -44,20 +44,38 @@ class SolarSystem {
 
             var partial_velocity = new THREE.Vector3();
 
-            partial_velocity = planet.velocity.clone().add(this.acceleration(planet).clone().multiplyScalar(dt/2));
+            partial_velocity = planet.velocity.clone().add(this.acceleration(planet).clone().multiplyScalar(dt / 2));
 
             new_pos = planet.position.clone().add(partial_velocity.clone().multiplyScalar(dt));
-            new_vel = partial_velocity.clone().add(this.acceleration(planet).clone().multiplyScalar(dt/2));
+            new_vel = partial_velocity.clone().add(this.acceleration(planet).clone().multiplyScalar(dt / 2));
 
             new_planet_state[planet.name] = {'position': new_pos, 'velocity': new_vel};
 
         }
 
         for (var planet of this._planets) {
-            planet.position = new_planet_state[planet.name].position;
-            planet.velocity = new_planet_state[planet.name].velocity;
+            planet.position = new_planet_state[planet.name]['position'];
+            planet.velocity = new_planet_state[planet.name]['velocity'];
         }
 
+    }
+
+    totalEnergy(planet){
+        return planet.kineticEnergy() + this.gravitationalEnergy(planet);
+    }
+
+    gravitationalEnergy(planet) {
+        var energy = 0;
+        var diff_position;
+
+        for (var p of this._planets) {
+            if (p !== planet) {
+                diff_position = planet.position.clone().sub(p.position);
+                energy += -(this._G * planet._mass * p._mass) / diff_position.length();
+            }
+
+        }
+        return energy;
     }
 
 
@@ -82,6 +100,9 @@ class CelestialBody {
         this._position = value.clone();
     }
 
+    kineticEnergy() {
+        return 0.5 * this._mass * this._velocity.lengthSq();
+    }
 
     /*  mass and radius are float
         this class contains the velocity and the position as two THREE.Vector3 elements
