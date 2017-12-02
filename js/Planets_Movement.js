@@ -1,14 +1,12 @@
 const universe_scale = 1e-10;
-const radius_scale = universe_scale * 10;
+const radius_scale = universe_scale * 1000;
 
 const dt = 60;
 
 var solarSys;
 
 //Load planet texture
-var stars_texture = new THREE.TextureLoader().load( 'planets_textures/2k_stars_milky_way.jpg');
-var earth_texture = new THREE.TextureLoader().load( 'planets_textures/2k_earth_daymap.jpg');
-var moon_texture = new THREE.TextureLoader().load( 'planets_textures/2k_moon.jpg');
+
 var sun_texture = new THREE.TextureLoader().load( 'planets_textures/2k_sun.jpg');
 var mercury_texture = new THREE.TextureLoader().load( 'planets_textures/2k_mercury.jpg');
 var mars_texture = new THREE.TextureLoader().load( 'planets_textures/2k_mars.jpg');
@@ -24,7 +22,8 @@ var neptune_texture = new THREE.TextureLoader().load( 'planets_textures/2k_neptu
 //BACKGROUND
 var scene_bg = {
     bg_geometry : new THREE.SphereBufferGeometry( 90, 64, 64 ),
-    bg_material : new THREE.MeshBasicMaterial( { map: stars_texture, side: THREE.BackSide } ),
+    bg_material : new THREE.MeshBasicMaterial( {
+        map: new THREE.TextureLoader().load( 'planets_textures/2k_stars_milky_way.jpg'), side: THREE.BackSide } ),
 
 };
 
@@ -33,7 +32,7 @@ var scene_bg = {
 var planets = {
 
     'sun': {
-        'geometry': new THREE.SphereBufferGeometry(SUN.RADIUS * radius_scale, SUN.WIDTH, SUN.HEIGHT, SUN.PHI_START, SUN.PHI_LENGTH, SUN.THETA_STARTS, SUN.THETA_LENGTH),
+        'geometry': new THREE.SphereBufferGeometry(SUN.RADIUS * radius_scale * 0.001, SUN.WIDTH, SUN.HEIGHT, SUN.PHI_START, SUN.PHI_LENGTH, SUN.THETA_STARTS, SUN.THETA_LENGTH),
         'material': new THREE.MeshPhongMaterial({
             map: sun_texture,
             overdraw: 0.5,
@@ -45,28 +44,23 @@ var planets = {
     
     'earth': {
         'geometry': new THREE.SphereBufferGeometry(EARTH.RADIUS * radius_scale, EARTH.WIDTH, EARTH.HEIGHT, EARTH.PHI_START, EARTH.PHI_LENGTH, EARTH.THETA_STARTS, EARTH.THETA_LENGTH),
-        'material': new THREE.MeshPhongMaterial({color: 0xf7f7f7, map: earth_texture, overdraw: 0.5, shininess: 5}),
+        'material': new THREE.MeshPhongMaterial({
+            color: 0xf7f7f7,
+            map: new THREE.TextureLoader().load( 'planets_textures/2k_earth_daymap.jpg'),
+            overdraw: 0.5, shininess: 5}),
         'physics': new CelestialBody('Earth', EARTH.MASS, EARTH.INITIAL_POSITION, EARTH.INITIAL_VELOCITY)
     },
     
     
     'moon': {
         'geometry': new THREE.SphereBufferGeometry(MOON.RADIUS * radius_scale, MOON.WIDTH, MOON.HEIGHT, MOON.PHI_START, MOON.PHI_LENGTH, MOON.THETA_STARTS, MOON.THETA_LENGTH),
-        'material': new THREE.MeshPhongMaterial({map: moon_texture, overdraw: 0.5}),
+        'material': new THREE.MeshPhongMaterial({
+            map: new THREE.TextureLoader().load( 'planets_textures/2k_moon.jpg'),
+            overdraw: 0.5,
+            shininess: 5}),
         'physics': new CelestialBody('Moon', MOON.MASS, MOON.INITIAL_POSITION, MOON.INITIAL_VELOCITY)
     },
     
-    /*
-    'saturn': {
-        //SphereBufferGeometry(radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength)
-        'geometry': new THREE.SphereBufferGeometry(SATURN.RADIUS * radius_scale, SATURN.WIDTH, SATURN.HEIGHT, SATURN.PHI_START, SATURN.PHI_LENGTH, SATURN.THETA_STARTS, SATURN.THETA_LENGTH),
-        'material': new THREE.MeshPhongMaterial({map: saturn_texture, overdraw: 0.5}),
-        //RingBufferGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, thetaStart, thetaLength)
-        'ring_geometry': new THREE.RingBufferGeometry(
-            SATURN_RING.INNER_RADIUS * universe_scale, SATURN_RING.OUTER_RADIUS * universe_scale, SATURN_RING.THETA_SEGMENTS, SATURN_RING.PHI_SEGMENTS, SATURN_RING.THETA_STARTS, SATURN_RING.THETA_LENGTH),
-        'ring_material': new THREE.MeshPhongMaterial({color: 0xd0b1a1, shininess: 0, transparent: true}),
-        'physics': new CelestialBody('Saturn', SATURN.MASS, SATURN.INITIAL_POSITION, SATURN.INITIAL_VELOCITY)
-    },
 
 
     'mercury': {
@@ -82,7 +76,7 @@ var planets = {
         'physics': new CelestialBody('Mars', MARS.MASS, MARS.INITIAL_POSITION, MARS.INITIAL_VELOCITY)
     },
     
-    
+    /*
     'venus': {
         'geometry': new THREE.SphereBufferGeometry(VENUS.RADIUS * radius_scale, VENUS.WIDTH, VENUS.HEIGHT, VENUS.PHI_START, VENUS.PHI_LENGTH, VENUS.THETA_STARTS, VENUS.THETA_LENGTH),
         'material': new THREE.MeshPhongMaterial({map: venus_texture, overdraw: 0.5}),
@@ -107,6 +101,17 @@ var planets = {
         'geometry': new THREE.SphereBufferGeometry(NEPTUNE.RADIUS * radius_scale, NEPTUNE.WIDTH, NEPTUNE.HEIGHT, NEPTUNE.PHI_START, NEPTUNE.PHI_LENGTH, NEPTUNE.THETA_STARTS, NEPTUNE.THETA_LENGTH),
         'material': new THREE.MeshPhongMaterial({map: neptune_texture, overdraw: 0.5}),
         'physics': new CelestialBody('Neptune', NEPTUNE.MASS, NEPTUNE.INITIAL_POSITION, NEPTUNE.INITIAL_VELOCITY),
+    },
+
+    'saturn': {
+        //SphereBufferGeometry(radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength)
+        'geometry': new THREE.SphereBufferGeometry(SATURN.RADIUS * radius_scale, SATURN.WIDTH, SATURN.HEIGHT, SATURN.PHI_START, SATURN.PHI_LENGTH, SATURN.THETA_STARTS, SATURN.THETA_LENGTH),
+        'material': new THREE.MeshPhongMaterial({map: saturn_texture, overdraw: 0.5}),
+        //RingBufferGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, thetaStart, thetaLength)
+        'ring_geometry': new THREE.RingBufferGeometry(
+            SATURN_RING.INNER_RADIUS * universe_scale, SATURN_RING.OUTER_RADIUS * universe_scale, SATURN_RING.THETA_SEGMENTS, SATURN_RING.PHI_SEGMENTS, SATURN_RING.THETA_STARTS, SATURN_RING.THETA_LENGTH),
+        'ring_material': new THREE.MeshPhongMaterial({color: 0xd0b1a1, shininess: 0, transparent: true}),
+        'physics': new CelestialBody('Saturn', SATURN.MASS, SATURN.INITIAL_POSITION, SATURN.INITIAL_VELOCITY)
     },*/
 };
 
@@ -130,7 +135,7 @@ function initializePhysics(){
 
 
 function updatePlanetsPositions(){
-    solarSys.updateVelocityVerlet(dt, 12);
+    solarSys.updateVelocityVerlet(dt, 100);
 }
 
 

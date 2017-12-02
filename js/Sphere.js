@@ -64,7 +64,7 @@ THREE.Vector3.prototype.toString = function() {
 };
 
 
-controls.target = planets['moon'].mesh.position;
+controls.target = planets['sun'].mesh.position;
 
 scene.add(new THREE.AmbientLight(0xffffff));
 
