@@ -20,6 +20,7 @@ var planets = {
             emissive: 0xC21212,
             emissiveIntensity: 1
         }),
+        'angle' : 0.1265364,
         'physics': new CelestialBody('Sun', SUN.MASS, SUN.INITIAL_POSITION, SUN.INITIAL_VELOCITY)
     },
     
@@ -29,6 +30,7 @@ var planets = {
             color: 0xf7f7f7,
             map: new THREE.TextureLoader().load( 'planets_textures/2k_earth_daymap.jpg'),
             overdraw: 0.5, shininess: 5}),
+        'angle' : 0.40910518,
         'physics': new CelestialBody('Earth', EARTH.MASS, EARTH.INITIAL_POSITION, EARTH.INITIAL_VELOCITY)
     },
     
@@ -39,6 +41,7 @@ var planets = {
             map: new THREE.TextureLoader().load( 'planets_textures/2k_moon.jpg'),
             overdraw: 0.5,
             shininess: 5}),
+        'angle' : 0.116588,
         'physics': new CelestialBody('Moon', MOON.MASS, MOON.INITIAL_POSITION, MOON.INITIAL_VELOCITY)
     },
 
@@ -49,6 +52,7 @@ var planets = {
             map: new THREE.TextureLoader().load( 'planets_textures/2k_mercury.jpg'),
             overdraw: 0.5,
             shininess: 5}),
+        'angle' : 5.235988e-5,
         'physics': new CelestialBody('Mercury', MERCURY.MASS, MERCURY.INITIAL_POSITION, MERCURY.INITIAL_VELOCITY)
     },
     
@@ -59,6 +63,7 @@ var planets = {
             map: new THREE.TextureLoader().load( 'planets_textures/2k_mars.jpg'),
             overdraw: 0.5,
             shininess: 5}),
+        'angle' : 0.43964844,
         'physics': new CelestialBody('Mars', MARS.MASS, MARS.INITIAL_POSITION, MARS.INITIAL_VELOCITY)
     },
     
@@ -69,6 +74,7 @@ var planets = {
             map: new THREE.TextureLoader().load( 'planets_textures/2k_venus_atmosphere.jpg'),
             overdraw: 0.5,
             shininess: 5}),
+        'angle' : 0.04607669,
         'physics': new CelestialBody('Venus', VENUS.MASS, VENUS.INITIAL_POSITION, VENUS.INITIAL_VELOCITY)
     },
     
@@ -79,6 +85,7 @@ var planets = {
             map: new THREE.TextureLoader().load( 'planets_textures/2k_jupiter.jpg'),
             overdraw: 0.5,
             shininess: 5}),
+        'angle' : 0.05462881,
         'physics': new CelestialBody('Jupiter', JUPITER.MASS, JUPITER.INITIAL_POSITION, JUPITER.INITIAL_VELOCITY)
     },
     
@@ -89,6 +96,7 @@ var planets = {
             map: new THREE.TextureLoader().load( 'planets_textures/2k_uranus.jpg'),
             overdraw: 0.5,
             shininess: 5}),
+        'angle' : 1.4351842,
         'physics': new CelestialBody('Uranus', URANUS.MASS, URANUS.INITIAL_POSITION, URANUS.INITIAL_VELOCITY)
     },
     
@@ -98,6 +106,7 @@ var planets = {
             map: new THREE.TextureLoader().load( 'planets_textures/2k_neptune.jpg'),
             overdraw: 0.5,
             shininess: 5}),
+        'angle' : 0.494277244,
         'physics': new CelestialBody('Neptune', NEPTUNE.MASS, NEPTUNE.INITIAL_POSITION, NEPTUNE.INITIAL_VELOCITY),
     },
 
@@ -108,6 +117,7 @@ var planets = {
             map: new THREE.TextureLoader().load( 'planets_textures/2k_saturn.jpg'),
             overdraw: 0.5,
             shininess: 5}),
+        'angle' : 0.46652651,
         'physics': new CelestialBody('Saturn', SATURN.MASS, SATURN.INITIAL_POSITION, SATURN.INITIAL_VELOCITY)
         /*RingBufferGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, thetaStart, thetaLength)
         'ring_geometry': new THREE.RingBufferGeometry(

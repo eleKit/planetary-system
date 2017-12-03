@@ -42,7 +42,7 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 
 //draw axes
-var axesHelper = new THREE.AxesHelper();
+var axesHelper = new THREE.AxesHelper(10);
 scene.add(axesHelper);
 
 
@@ -50,6 +50,7 @@ for(const p_name in planets) {
     const planet = planets[p_name];
     planet.mesh = new THREE.Mesh( planet.geometry, planet.material );
     planet.mesh.position.copy(scalePosition(planet.physics));
+    planet.mesh.rotation.x += (1.5708 - planet.angle);
 
     planet.mesh.castShadow = true; //default is false
     planet.mesh.receiveShadow = false; //default
@@ -88,6 +89,7 @@ var animate = function () {
         const planet = planets[p_name];
         planet.mesh.position.copy(scalePosition(planet.physics));
     }
+    planets['earth'].mesh.rotation.y += 0.0174533;
 
     /*console.log(' earth position ' + planets['earth'].physics.position.toString() + '; magnitude=' + planets['earth'].physics.position.length());
     console.log(' earth velocity ' + planets['earth'].physics.velocity.toString() + '; magnitude=' + planets['earth'].physics.velocity.length());
