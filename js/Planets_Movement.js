@@ -9,20 +9,11 @@ var solarSys;
 
 
 
-//BACKGROUND
-var scene_bg = {
-    bg_geometry : new THREE.SphereBufferGeometry( 500, 80, 80, 0, 6.3, 0, 6.3 ),
-    bg_material : new THREE.MeshBasicMaterial( {
-        map: new THREE.TextureLoader().load( 'planets_textures/2k_stars_milky_way.jpg'), side: THREE.BackSide } ),
-
-};
-
-
 //PLANETS
 var planets = {
 
     'sun': {
-        'geometry': new THREE.SphereBufferGeometry(SUN.RADIUS * radius_scale * 0.001, SUN.WIDTH, SUN.HEIGHT, SUN.PHI_START, SUN.PHI_LENGTH, SUN.THETA_STARTS, SUN.THETA_LENGTH),
+        'geometry': new THREE.SphereBufferGeometry(SUN.RADIUS * radius_scale * 0.02, SUN.WIDTH, SUN.HEIGHT, SUN.PHI_START, SUN.PHI_LENGTH, SUN.THETA_STARTS, SUN.THETA_LENGTH),
         'material': new THREE.MeshPhongMaterial({
             map: new THREE.TextureLoader().load( 'planets_textures/2k_sun.jpg'),
             overdraw: 0.5,

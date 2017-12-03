@@ -32,14 +32,13 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 // the first parameter is the colour, the second is the opacity, 0 is transparent
 renderer.setClearColor( 0xd2d2d2, 1 );
 
+//background
+scene.background = new THREE.TextureLoader().load( 'planets_textures/2k_stars_milky_way.jpg');
+
 document.body.appendChild( renderer.domElement );
 
 window.addEventListener( 'resize', onWindowResize, false );
 
-//background
-
-var background = new THREE.Mesh(scene_bg.bg_geometry, scene_bg.bg_material);
-scene.add(background);
 
 
 //draw axes
