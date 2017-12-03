@@ -88,6 +88,9 @@ var animate = function () {
     for(const p_name in planets) {
         const planet = planets[p_name];
         planet.mesh.position.copy(scalePosition(planet.physics));
+        if(p_name === 'moon'){
+            planet.mesh.position.add(planet.mesh.position.clone().sub(scalePosition(planets['earth'].physics)).multiplyScalar(50));
+        }
     }
     planets['earth'].mesh.rotation.y += 0.0174533;
 

@@ -17,6 +17,14 @@ $( document ).ready(function() {
     $('#Earth').on("click", setEarth);
 });
 
+$( document ).ready(function() {
+    function setMoon() {
+        controls.target = planets[$("#Moon").text()].mesh.position;
+    }
+
+    $('#Moon').on("click", setMoon);
+});
+
 
 $( document ).ready(function() {
     function setMars() {
