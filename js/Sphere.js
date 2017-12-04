@@ -64,6 +64,7 @@ var torus_material = new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader
     overdraw: 0.5, transparent : true, opacity: 0.7} );
 var torus = new THREE.Mesh( torus_geometry, torus_material );
 torus.position.copy(planets['saturn'].mesh.position);
+torus.rotation.x += (-planets['saturn'].angle);
 scene.add( torus );
 
 THREE.Vector3.prototype.toString = function() {
