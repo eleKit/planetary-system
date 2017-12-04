@@ -118,12 +118,7 @@ var planets = {
             overdraw: 0.5,
             shininess: 5}),
         'angle' : 0.46652651,
-        'physics': new CelestialBody('Saturn', SATURN.MASS, SATURN.INITIAL_POSITION, SATURN.INITIAL_VELOCITY)
-        /*RingBufferGeometry(innerRadius, outerRadius, thetaSegments, phiSegments, thetaStart, thetaLength)
-        'ring_geometry': new THREE.RingBufferGeometry(
-            SATURN_RING.INNER_RADIUS * universe_scale, SATURN_RING.OUTER_RADIUS * universe_scale, SATURN_RING.THETA_SEGMENTS, SATURN_RING.PHI_SEGMENTS, SATURN_RING.THETA_STARTS, SATURN_RING.THETA_LENGTH),
-        'ring_material': new THREE.MeshPhongMaterial({color: 0xd0b1a1, shininess: 0, transparent: true}),
-        */
+        'physics': new CelestialBody('Saturn', SATURN.MASS, SATURN.INITIAL_POSITION, SATURN.INITIAL_VELOCITY),
     },
 };
 

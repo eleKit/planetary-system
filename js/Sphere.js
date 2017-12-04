@@ -58,6 +58,12 @@ for(const p_name in planets) {
     scene.add( planet.mesh );
 }
 
+//TODO saturn ring
+var torus_geometry = new THREE.TorusGeometry( SATURN.RADIUS * radius_scale * 2 ,SATURN.RADIUS * radius_scale /10 , 16, 100 );
+var torus_material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+var torus = new THREE.Mesh( torus_geometry, torus_material );
+torus.position.copy(planets['saturn'].mesh.position);
+scene.add( torus );
 
 THREE.Vector3.prototype.toString = function() {
     return '(' + this.x.toFixed(3) + ', ' + this.y.toFixed(3) + ', ' + this.z.toFixed(3) + ')';
@@ -91,7 +97,11 @@ var animate = function () {
         if(p_name === 'moon'){
             planet.mesh.position.add(planet.mesh.position.clone().sub(scalePosition(planets['earth'].physics)).multiplyScalar(50));
         }
+        if(p_name === 'saturn'){
+            torus.position.copy(planet.mesh.position);
+        }
     }
+
     planets['earth'].mesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), 0.0004375269 );
 
     /*console.log(' earth position ' + planets['earth'].physics.position.toString() + '; magnitude=' + planets['earth'].physics.position.length());
