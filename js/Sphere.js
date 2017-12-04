@@ -92,7 +92,7 @@ var animate = function () {
             planet.mesh.position.add(planet.mesh.position.clone().sub(scalePosition(planets['earth'].physics)).multiplyScalar(50));
         }
     }
-    planets['earth'].mesh.rotation.y += 0.0174533;
+    planets['earth'].mesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), 0.0004375269 );
 
     /*console.log(' earth position ' + planets['earth'].physics.position.toString() + '; magnitude=' + planets['earth'].physics.position.length());
     console.log(' earth velocity ' + planets['earth'].physics.velocity.toString() + '; magnitude=' + planets['earth'].physics.velocity.length());
