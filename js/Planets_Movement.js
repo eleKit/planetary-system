@@ -6,9 +6,6 @@ const iterations = 100;
 
 var solarSys;
 
-//Load planet texture
-
-
 
 //PLANETS
 var planets = {
@@ -57,7 +54,7 @@ var planets = {
             overdraw: 0.5,
             shininess: 5}),
         'angle' : 5.235988e-5,
-        'rotation_rate' : 0.124001e+5,
+        'rotation_rate' : 0.000001239932688,
         'physics': new CelestialBody('Mercury', MERCURY.MASS, MERCURY.INITIAL_POSITION, MERCURY.INITIAL_VELOCITY)
     },
     
@@ -69,7 +66,7 @@ var planets = {
             overdraw: 0.5,
             shininess: 5}),
         'angle' : 0.43964844,
-        'rotation_rate' : 7.088218e+5,
+        'rotation_rate' : 0.00007094834358,
         'physics': new CelestialBody('Mars', MARS.MASS, MARS.INITIAL_POSITION, MARS.INITIAL_VELOCITY)
     },
     
@@ -81,7 +78,7 @@ var planets = {
             overdraw: 0.5,
             shininess: 5}),
         'angle' : 0.04607669,
-        'rotation_rate' : -0.029924e+5,
+        'rotation_rate' : -0.000000299242049,
         'physics': new CelestialBody('Venus', VENUS.MASS, VENUS.INITIAL_POSITION, VENUS.INITIAL_VELOCITY)
     },
     
@@ -105,7 +102,7 @@ var planets = {
             overdraw: 0.5,
             shininess: 5}),
         'angle' : 1.4351842,
-        'rotation_rate' : 1.012e-4,
+        'rotation_rate' : -0.0001014726309,
         'physics': new CelestialBody('Uranus', URANUS.MASS, URANUS.INITIAL_POSITION, URANUS.INITIAL_VELOCITY)
     },
     
@@ -138,7 +135,7 @@ function scalePosition(planet){
 }
 
 function rotatePlanet(planet){
-    return planet.rotation_rate * 1/(dt * iterations);
+    return planet.rotation_rate * (dt * iterations);
 }
 
 
