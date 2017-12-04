@@ -59,8 +59,9 @@ for(const p_name in planets) {
 }
 
 //TODO saturn ring
-var torus_geometry = new THREE.TorusGeometry( SATURN.RADIUS * radius_scale * 2 ,SATURN.RADIUS * radius_scale /10 , 16, 100 );
-var torus_material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+var torus_geometry = new THREE.TorusGeometry( SATURN.RADIUS * radius_scale * 2 ,SATURN.RADIUS * radius_scale /3 , 2.7, 100 );
+var torus_material = new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load( 'planets_textures/saturnringcolor.jpg'),
+    overdraw: 0.5, transparent : true, opacity: 0.7} );
 var torus = new THREE.Mesh( torus_geometry, torus_material );
 torus.position.copy(planets['saturn'].mesh.position);
 scene.add( torus );
