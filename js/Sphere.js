@@ -104,7 +104,12 @@ var animate = function () {
         }
     }
 
-    planets['earth'].mesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), 0.0004375269 );
+    for(const p_name in planets) {
+        const planet = planets[p_name];
+        planet.mesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), rotatePlanet(planet));
+
+
+    }
 
     /*console.log(' earth position ' + planets['earth'].physics.position.toString() + '; magnitude=' + planets['earth'].physics.position.length());
     console.log(' earth velocity ' + planets['earth'].physics.velocity.toString() + '; magnitude=' + planets['earth'].physics.velocity.length());
