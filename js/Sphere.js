@@ -111,6 +111,8 @@ var animate = function () {
 
     }
 
+    updateDate();
+
     /*console.log(' earth position ' + planets['earth'].physics.position.toString() + '; magnitude=' + planets['earth'].physics.position.length());
     console.log(' earth velocity ' + planets['earth'].physics.velocity.toString() + '; magnitude=' + planets['earth'].physics.velocity.length());
 

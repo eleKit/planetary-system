@@ -6,8 +6,6 @@ $( document ).ready(function() {
     $('#Sun').on("click", setSun);
 
 
-    $('#date').text("here goes the date");
-
 
     $('#speed').change(function() { iterations = $('#speed').val() });
 
