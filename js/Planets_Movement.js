@@ -2,7 +2,7 @@ const universe_scale = 1e-10;
 const radius_scale = universe_scale * 1000;
 
 const dt = 60;
-const iterations = 100;
+var iterations = 100;
 
 var solarSys;
 

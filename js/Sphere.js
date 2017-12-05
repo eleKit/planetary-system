@@ -5,20 +5,8 @@ var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHei
 //TODO pay attention, if you remove camera location trackball controls stops working, otherwise you must fix a target
 camera.position.z = 50;
 
-var controls = new THREE.TrackballControls( camera );
-controls.rotateSpeed = 1.0;
-controls.zoomSpeed = 1.2;
-controls.panSpeed = 0.8;
-controls.noZoom = false;
-controls.noPan = false;
-controls.staticMoving = true;
-controls.dynamicDampingFactor = 0.3;
-controls.keys = [ 65, 83, 68 ];
-controls.addEventListener( 'change', render );
-
 
 var scene = new THREE.Scene();
-
 
 
 var renderer = new THREE.WebGLRenderer();
@@ -36,6 +24,18 @@ renderer.setClearColor( 0xd2d2d2, 1 );
 scene.background = new THREE.TextureLoader().load( 'planets_textures/2k_stars_milky_way.jpg');
 
 document.body.appendChild( renderer.domElement );
+
+
+var controls = new THREE.TrackballControls( camera, renderer.domElement );
+controls.rotateSpeed = 1.0;
+controls.zoomSpeed = 1.2;
+controls.panSpeed = 0.8;
+controls.noZoom = false;
+controls.noPan = false;
+controls.staticMoving = true;
+controls.dynamicDampingFactor = 0.3;
+controls.keys = [ 65, 83, 68 ];
+controls.addEventListener( 'change', render );
 
 window.addEventListener( 'resize', onWindowResize, false );
 
