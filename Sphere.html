@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>My first three.js app</title>
+    <title>Planetarium</title>
     <link rel="stylesheet" href="css/planetarium.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
@@ -11,17 +11,6 @@
     </style>
     <div id="Commands" class="form-inline">
         <div class="form-group">
-            <form>
-                <style>
-                    form { margin-top: 2%;}
-                </style>
-                <span id="date">xxx</span>
-                <select name="select" id="speed">
-                    <option value="10">Slow</option>
-                    <option value="50">Medium</option>
-                    <option value="100" selected>Fast</option>
-                </select>
-            </form>
             <button id="Sun" class="btn btn-outline-light btn-sm" type="button">Sun</button>
             <button id="Mercury" class="btn btn-outline-light btn-sm" type="button">Mercury</button>
             <button id="Venus" class="btn btn-outline-light btn-sm" type="button">Venus</button>
@@ -32,6 +21,17 @@
             <button id="Saturn" class="btn btn-outline-light btn-sm" type="button">Saturn</button>
             <button id="Uranus" class="btn btn-outline-light btn-sm" type="button">Uranus</button>
             <button id="Neptune" class="btn btn-outline-light btn-sm" type="button">Neptune</button>
+            <form>
+                <style>
+                    form { margin-top: 2%;}
+                </style>
+                <select name="select" id="speed">
+                    <option value="10">Slow</option>
+                    <option value="50">Medium</option>
+                    <option value="100" selected>Fast</option>
+                </select>
+                <span id="date">xxx</span>
+            </form>
 
         </div>
     </div>
