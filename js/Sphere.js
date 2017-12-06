@@ -2,7 +2,7 @@ initializePhysics();
 
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
 
-//TODO pay attention, if you remove camera location trackball controls stops working, otherwise you must fix a target
+//pay attention, if you remove camera location trackball controls stops working, otherwise you must fix a target
 camera.position.z = 50;
 
 
@@ -113,14 +113,7 @@ var animate = function () {
 
     updateDate();
 
-    /*console.log(' earth position ' + planets['earth'].physics.position.toString() + '; magnitude=' + planets['earth'].physics.position.length());
-    console.log(' earth velocity ' + planets['earth'].physics.velocity.toString() + '; magnitude=' + planets['earth'].physics.velocity.length());
 
-    console.log('Earth total energy: ' + solarSys.totalEnergy(planets['earth'].physics)
-        + ' (kinetic=' + planets['earth'].physics.kineticEnergy() + ') '
-        + '\n (gravitational=' + solarSys.gravitationalEnergy(planets['earth'].physics) + ') '
-    );
-    */
 
 
     controls.update();
