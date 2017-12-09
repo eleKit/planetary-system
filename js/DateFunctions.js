@@ -12,6 +12,6 @@ function updateDate(){
 
 function printDate(){
 
-    $('#date').text('Earth date  \'' + current_date.getFullYear() + ':' + (current_date.getMonth() +1) + ':' + current_date.getDate() + '\'');
+    $('#date').text('Earth date ' + current_date.getFullYear() + '-' + (current_date.getMonth() +1) + '-' + current_date.getDate() + '');
 
 }

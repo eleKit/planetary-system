@@ -1,4 +1,22 @@
 $( document ).ready(function() {
+    function mute() {
+        var audioElm = document.getElementById('music');
+        if($('#Mute').text() === 'pause'){
+            $('#Mute').text('play');
+            audioElm.pause();
+        }
+        else {
+            $('#Mute').text('pause');
+            audioElm.play();
+        }
+    }
+
+    $('#Mute').on("click", mute);
+
+
+
+
+
     function setSun() {
         controls.target = planets[$("#Sun").text().toLowerCase()].mesh.position;
     }

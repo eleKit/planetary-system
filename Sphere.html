@@ -9,6 +9,13 @@
     <style>
         body { margin: 0; background-color: black; color : white;}
     </style>
+
+    <audio id="music" autoplay loop>
+        <source src="bensound-love.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+
     <div id="Commands" class="form-inline">
         <div class="form-group">
             <button id="Sun" class="btn btn-outline-light btn-sm" type="button">Sun</button>
@@ -22,9 +29,9 @@
             <button id="Uranus" class="btn btn-outline-light btn-sm" type="button">Uranus</button>
             <button id="Neptune" class="btn btn-outline-light btn-sm" type="button">Neptune</button>
             <form>
-                <style>
-                    form { margin-top: 2%;}
-                </style>
+                <span id="text-music">Music: </span>
+                <button id="Mute" class="btn btn-outline-info btn-sm" type="button">pause</button>
+                <span id="text-speed">Speed: </span>
                 <select name="select" id="speed">
                     <option value="10">Slow</option>
                     <option value="50">Medium</option>
@@ -34,6 +41,15 @@
             </form>
 
         </div>
+    </div>
+    <div id="credits" class="container">
+        <p class="text-secondary"> Project developed for
+            Computer Graphics Course at
+            <a href="https://www.polimi.it/home/">Polimi</a> by
+            <a href="https://github.com/elekit">Eleonora</a>,
+            music from: <a href="https://www.bensound.com">bensound.com</a></p>
+
+
     </div>
 </div>
 

@@ -1,8 +1,14 @@
 body { margin: 0; }
-canvas { position: absolute; top: 10%;}
+canvas { position: absolute; top: 12%;}
+
 
 
 div#controls { position: absolute; z-index: 100; }
+
+form {margin-top: 15px; padding-left: 10px; padding-right: 5px;}
+
+select#speed{padding-left: 10px; padding-right: 5px;}
+
 
 
 
