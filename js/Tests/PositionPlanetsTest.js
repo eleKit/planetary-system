@@ -16,16 +16,16 @@ function main() {
 
     // -------------
 
-    var sun = new CelestialBody('Sun', 100,  SUN.INITIAL_POSITION.multiplyScalar(1e-9), SUN.INITIAL_VELOCITY);
-    var earth = new CelestialBody('Earth', 1,  EARTH.INITIAL_POSITION.multiplyScalar(1e-9), EARTH.INITIAL_VELOCITY);
-    var moon = new CelestialBody('Earth', 1,  MOON.INITIAL_POSITION.multiplyScalar(1e-9), MOON.INITIAL_VELOCITY);
-    var mercury = new CelestialBody('Earth', 1,  MERCURY.INITIAL_POSITION.multiplyScalar(1e-9), MERCURY.INITIAL_VELOCITY);
-    var mars = new CelestialBody('Earth', 1,  MARS.INITIAL_POSITION.multiplyScalar(1e-9), MARS.INITIAL_VELOCITY);
-    var venus = new CelestialBody('Earth', 1,  VENUS.INITIAL_POSITION.multiplyScalar(1e-9), VENUS.INITIAL_VELOCITY);
-    var jupiter = new CelestialBody('Earth', 1,  JUPITER.INITIAL_POSITION.multiplyScalar(1e-9), JUPITER.INITIAL_VELOCITY);
-    var saturn = new CelestialBody('Earth', 1,  SATURN.INITIAL_POSITION.multiplyScalar(1e-9), SATURN.INITIAL_VELOCITY);
-    var uranus = new CelestialBody('Earth', 1,  URANUS.INITIAL_POSITION.multiplyScalar(1e-9), URANUS.INITIAL_VELOCITY);
-    var neptune = new CelestialBody('Earth', 1, NEPTUNE.INITIAL_POSITION.multiplyScalar(1e-9), NEPTUNE.INITIAL_VELOCITY);
+    var sun = new CelestialBody('Sun', 100,  SUN.INITIAL_POSITION.multiplyScalar(1e-12), SUN.INITIAL_VELOCITY);
+    var earth = new CelestialBody('Earth', 1,  EARTH.INITIAL_POSITION.multiplyScalar(1e-12), EARTH.INITIAL_VELOCITY);
+    var moon = new CelestialBody('Earth', 1,  MOON.INITIAL_POSITION.multiplyScalar(1e-12), MOON.INITIAL_VELOCITY);
+    var mercury = new CelestialBody('Earth', 1,  MERCURY.INITIAL_POSITION.multiplyScalar(1e-12), MERCURY.INITIAL_VELOCITY);
+    var mars = new CelestialBody('Earth', 1,  MARS.INITIAL_POSITION.multiplyScalar(1e-12), MARS.INITIAL_VELOCITY);
+    var venus = new CelestialBody('Earth', 1,  VENUS.INITIAL_POSITION.multiplyScalar(1e-12), VENUS.INITIAL_VELOCITY);
+    var jupiter = new CelestialBody('Earth', 1,  JUPITER.INITIAL_POSITION.multiplyScalar(1e-12), JUPITER.INITIAL_VELOCITY);
+    var saturn = new CelestialBody('Earth', 1,  SATURN.INITIAL_POSITION.multiplyScalar(1e-12), SATURN.INITIAL_VELOCITY);
+    var uranus = new CelestialBody('Earth', 1,  URANUS.INITIAL_POSITION.multiplyScalar(1e-12), URANUS.INITIAL_VELOCITY);
+    var neptune = new CelestialBody('Earth', 1, NEPTUNE.INITIAL_POSITION.multiplyScalar(1e-12), NEPTUNE.INITIAL_VELOCITY);
 
 
 
