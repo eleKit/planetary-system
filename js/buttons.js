@@ -15,6 +15,12 @@ $( document ).ready(function() {
 
 
 
+    function resetCamera() {
+        controls.reset();
+        controls.target = planets['sun'].mesh.position;
+    }
+
+    $('#Reset').on("click", resetCamera);
 
 
     function setSun() {
