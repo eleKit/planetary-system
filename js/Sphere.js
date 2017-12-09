@@ -41,9 +41,10 @@ window.addEventListener( 'resize', onWindowResize, false );
 
 
 
-//draw axes
+/*draw axes
 var axesHelper = new THREE.AxesHelper(10);
 scene.add(axesHelper);
+*/
 
 
 for(const p_name in planets) {
