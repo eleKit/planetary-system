@@ -15,7 +15,7 @@ function main() {
 
     // -------------
 
-    var sun = new CelestialBody('Sun', 100, new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0));
+    var sun = new CelestialBody('Sun', 100, new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, -10/100, 0));
     var earth = new CelestialBody('Earth', 1, new THREE.Vector3(1.0, 0, 0), new THREE.Vector3(0, 10, 0));
 
     var solarSys = new SolarSystem([sun, earth]);
