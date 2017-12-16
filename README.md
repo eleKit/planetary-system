@@ -1,4 +1,4 @@
-# planetarium
+# planetary-system
 
 Solar System simulator using [Velocity Verlet Algorithm](https://en.wikipedia.org/wiki/Verlet_integration) developed for the Computer Graphics course at Politecnico di Milano.
 
