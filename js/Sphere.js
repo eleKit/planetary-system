@@ -59,7 +59,7 @@ for(const p_name in planets) {
     scene.add( planet.mesh );
 }
 
-//TODO saturn ring
+//saturn ring
 var torus_geometry = new THREE.TorusGeometry( SATURN.RADIUS * radius_scale * 2 ,SATURN.RADIUS * radius_scale /3 , 2.7, 100 );
 var torus_material = new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load( 'planets_textures/saturnringcolor.jpg'),
     overdraw: 0.5, transparent : true, opacity: 0.7} );
