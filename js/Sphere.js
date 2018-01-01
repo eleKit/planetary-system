@@ -109,6 +109,10 @@ var animate = function () {
         const planet = planets[p_name];
         planet.mesh.rotateOnAxis(new THREE.Vector3(0, 1, 0), rotatePlanet(planet));
 
+        if(p_name === 'saturn'){
+            torus.rotateOnAxis(new THREE.Vector3(0, 0, 1), rotatePlanet(planet));
+        }
+
 
     }
 
