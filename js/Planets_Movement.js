@@ -19,7 +19,7 @@ var planets = {
             emissiveIntensity: 1
         }),
         'angle' : 0.1265364,
-        'rotation_rate' : 0,
+        'rotation_rate' : 2.9028219148604441e-6,
         'physics': new CelestialBody('Sun', SUN.MASS, SUN.INITIAL_POSITION, SUN.INITIAL_VELOCITY)
     },
     

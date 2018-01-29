@@ -34,7 +34,7 @@ function main() {
     var earth_positions = [];
     var sun_positions = [];
 
-    for (let i = 0; i < 1300; i++) {
+    for (let i = 0; i < 630; i++) {
 
 
         solarSys.updateVelocityVerlet(dt, 100);
