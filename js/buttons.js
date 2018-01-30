@@ -14,8 +14,22 @@ $( document ).ready(function() {
     $('#Mute').on("click", mute);
 
 
+    function slowSpeed(){
+        $('#speed').val('1').change();
+
+    }
+
+    function removeCamera(){
+        for(const p_name in planets) {
+            const planet = planets[p_name];
+            if (planet.mesh.children.includes(camera))
+                planet.mesh.remove(camera);
+        }
+        controls.reset();
+    }
 
     function resetCamera() {
+        removeCamera();
         controls.target = planets['sun'].mesh.position;
         controls.reset();
 
@@ -25,7 +39,9 @@ $( document ).ready(function() {
 
 
     function setSun() {
-        controls.target = planets[$("#Sun").text().toLowerCase()].mesh.position;
+        slowSpeed();
+        removeCamera();
+        planets[$("#Sun").text().toLowerCase()].mesh.add(camera);
     }
 
     $('#Sun').on("click", setSun);
@@ -36,63 +52,81 @@ $( document ).ready(function() {
 
 
     function setEarth() {
-        controls.target = planets[$("#Earth").text().toLowerCase()].mesh.position;
+        slowSpeed();
+        removeCamera();
+        planets[$("#Earth").text().toLowerCase()].mesh.add(camera);
     }
 
     $('#Earth').on("click", setEarth);
 
 
     function setMoon() {
-        controls.target = planets[$("#Moon").text().toLowerCase()].mesh.position;
+        slowSpeed();
+        removeCamera();
+        planets[$("#Moon").text().toLowerCase()].mesh.add(camera);
     }
 
     $('#Moon').on("click", setMoon);
 
 
     function setMars() {
-        controls.target = planets[$("#Mars").text().toLowerCase()].mesh.position;
+        slowSpeed();
+        removeCamera();
+        planets[$("#Mars").text().toLowerCase()].mesh.add(camera);
     }
 
     $('#Mars').on("click", setMars);
 
 
     function setMercury() {
-        controls.target = planets[$("#Mercury").text().toLowerCase()].mesh.position;
+        slowSpeed();
+        removeCamera();
+        planets[$("#Mercury").text().toLowerCase()].mesh.add(camera);
     }
 
     $('#Mercury').on("click", setMercury);
 
 
     function setVenus() {
-        controls.target = planets[$("#Venus").text().toLowerCase()].mesh.position;
+        slowSpeed();
+        removeCamera();
+        planets[$("#Venus").text().toLowerCase()].mesh.add(camera);
     }
 
     $('#Venus').on("click", setVenus);
 
 
     function setJupiter() {
-        controls.target = planets[$("#Jupiter").text().toLowerCase()].mesh.position;
+        slowSpeed();
+        removeCamera();
+        planets[$("#Jupiter").text().toLowerCase()].mesh.add(camera);
     }
 
     $('#Jupiter').on("click", setJupiter);
 
 
     function setNeptune() {
-        controls.target = planets[$("#Neptune").text().toLowerCase()].mesh.position;
+        slowSpeed();
+        removeCamera();
+        planets[$("#Neptune").text().toLowerCase()].mesh.add(camera);
     }
 
     $('#Neptune').on("click", setNeptune);
 
 
     function setSaturn() {
-        controls.target = planets[$("#Saturn").text().toLowerCase()].mesh.position;
+        slowSpeed();
+        removeCamera();
+        planets[$("#Saturn").text().toLowerCase()].mesh.add(camera);
     }
 
     $('#Saturn').on("click", setSaturn);
 
 
     function setUranus() {
-        controls.target = planets[$("#Uranus").text().toLowerCase()].mesh.position;
+        slowSpeed();
+        removeCamera();
+        planets[$("#Uranus").text().toLowerCase()].mesh.add(camera);
     }
 
     $('#Uranus').on("click", setUranus);
