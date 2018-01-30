@@ -15,8 +15,9 @@ var planets = {
         'material': new THREE.MeshPhongMaterial({
             map: new THREE.TextureLoader().load( 'planets_textures/2k_sun.jpg'),
             overdraw: 0.5,
-            emissive: 0xC21212,
-            emissiveIntensity: 1
+            emissive: 0xFF8100,
+            emissiveIntensity: 0.8,
+            emissiveMap: new THREE.TextureLoader().load( 'planets_textures/2k_sun.jpg')
         }),
         'angle' : 0.1265364,
         'rotation_rate' : 2.9028219148604441e-6,

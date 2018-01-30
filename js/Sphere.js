@@ -75,11 +75,11 @@ THREE.Vector3.prototype.toString = function() {
 
 controls.target = planets['sun'].mesh.position;
 
-scene.add(new THREE.AmbientLight(0xffffff));
+scene.add(new THREE.AmbientLight(0x404040));
 
 
 
-var point_light = new THREE.PointLight( 0xF7F7F7, 1.3, 0, 2 );
+var point_light = new THREE.PointLight( 0xF7F7F7, 0.65, 0, 2 );
 point_light.position = planets['sun'].mesh.position.clone();
 scene.add( point_light );
 
