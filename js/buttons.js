@@ -14,6 +14,10 @@ $( document ).ready(function() {
     $('#Mute').on("click", mute);
 
 
+    function resetSatellites(){
+        $('#satellites').val('none').change();
+    }
+
     function slowSpeed(){
         $('#speed').val('1').change();
 
@@ -29,6 +33,7 @@ $( document ).ready(function() {
     }
 
     function resetCamera() {
+        resetSatellites();
         removeCamera();
         controls.target = planets['sun'].mesh.position;
         controls.reset();
@@ -39,6 +44,7 @@ $( document ).ready(function() {
 
 
     function setSun() {
+        resetSatellites();
         slowSpeed();
         removeCamera();
         planets[$("#Sun").text().toLowerCase()].mesh.add(camera);
@@ -50,8 +56,19 @@ $( document ).ready(function() {
 
     $('#speed').change(function() { iterations = $('#speed').val() });
 
+    $('#satellites').change(function() {
+        slowSpeed();
+        removeCamera();
+        if($('#satellites').val() === 'none'){
+            //do nothing
+        } else {
+            planets[$('#satellites').val().toLowerCase()].mesh.add(camera);
+        }
+    });
+
 
     function setEarth() {
+        resetSatellites();
         slowSpeed();
         removeCamera();
         planets[$("#Earth").text().toLowerCase()].mesh.add(camera);
@@ -60,16 +77,9 @@ $( document ).ready(function() {
     $('#Earth').on("click", setEarth);
 
 
-    function setMoon() {
-        slowSpeed();
-        removeCamera();
-        planets[$("#Moon").text().toLowerCase()].mesh.add(camera);
-    }
-
-    $('#Moon').on("click", setMoon);
-
 
     function setMars() {
+        resetSatellites();
         slowSpeed();
         removeCamera();
         planets[$("#Mars").text().toLowerCase()].mesh.add(camera);
@@ -79,6 +89,7 @@ $( document ).ready(function() {
 
 
     function setMercury() {
+        resetSatellites();
         slowSpeed();
         removeCamera();
         planets[$("#Mercury").text().toLowerCase()].mesh.add(camera);
@@ -88,6 +99,7 @@ $( document ).ready(function() {
 
 
     function setVenus() {
+        resetSatellites();
         slowSpeed();
         removeCamera();
         planets[$("#Venus").text().toLowerCase()].mesh.add(camera);
@@ -97,6 +109,7 @@ $( document ).ready(function() {
 
 
     function setJupiter() {
+        resetSatellites();
         slowSpeed();
         removeCamera();
         planets[$("#Jupiter").text().toLowerCase()].mesh.add(camera);
@@ -106,6 +119,7 @@ $( document ).ready(function() {
 
 
     function setNeptune() {
+        resetSatellites();
         slowSpeed();
         removeCamera();
         planets[$("#Neptune").text().toLowerCase()].mesh.add(camera);
@@ -115,6 +129,7 @@ $( document ).ready(function() {
 
 
     function setSaturn() {
+        resetSatellites();
         slowSpeed();
         removeCamera();
         planets[$("#Saturn").text().toLowerCase()].mesh.add(camera);
@@ -124,6 +139,7 @@ $( document ).ready(function() {
 
 
     function setUranus() {
+        resetSatellites();
         slowSpeed();
         removeCamera();
         planets[$("#Uranus").text().toLowerCase()].mesh.add(camera);
