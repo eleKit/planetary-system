@@ -1,6 +1,10 @@
 initializePhysics();
 
+var land_planet;
+var land_bool;
+
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
+
 
 //pay attention, if you remove camera location trackball controls stops working, otherwise you must fix a target
 camera.position.z = 50;
@@ -121,6 +125,11 @@ var animate = function () {
 
         if(p_name === 'saturn'){
             torus.rotateOnAxis(new THREE.Vector3(0, 0, 1), rotatePlanet(planet));
+        }
+
+        if(land_bool){
+            camera.position.copy(land_planet.mesh.position);
+            camera.rotateOnAxis(new THREE.Vector3(0, 1, 0), rotatePlanet(planet));
         }
 
 

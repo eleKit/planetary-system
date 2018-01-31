@@ -33,6 +33,7 @@ $( document ).ready(function() {
     }
 
     function orbitCamera() {
+        land_bool=false;
         $('#camera_mode').text('Camera mode: Orbit ');
         removeCamera();
         camera_mode= $('#Orbit').text().toLowerCase();
@@ -46,6 +47,9 @@ $( document ).ready(function() {
 
 
     function landCamera(){
+        removeCamera();
+        controls.target = planets['sun'].mesh.position;
+        controls.reset();
         $('#camera_mode').text('Camera mode: Land ');
         if (camera_mode === 'orbit'){
             $('#planets').prop("disabled", false);
@@ -54,6 +58,9 @@ $( document ).ready(function() {
     }
 
     function followCamera(){
+        removeCamera();
+        controls.target = planets['sun'].mesh.position;
+        controls.reset();
         $('#camera_mode').text('Camera mode: Follow ');
         if (camera_mode === 'orbit'){
             $('#planets').prop("disabled", false);
@@ -75,11 +82,13 @@ $( document ).ready(function() {
 
             const planet_name = $('#planets').val();
             if(camera_mode === 'land'){
-                camera.position.copy(planets[planet_name.toLowerCase()].mesh.position);
+                land_bool = true;
+                land_planet = planets[planet_name.toLowerCase()];
                 //TODO need to update the position near the planet
                 //TODO need to rotate to look horizontal
             }
             else if(camera_mode === 'follow'){
+                land_bool = false
                 planets[planet_name.toLowerCase()].mesh.add(camera);
                 //TODO need to find the right delta to look the planet
 
