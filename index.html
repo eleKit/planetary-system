@@ -18,19 +18,38 @@
 
     <div id="Commands" class="form-inline">
         <div class="form-group">
-            <button id="Reset" class="btn btn-outline-danger btn-sm" type="button">System</button>
-            <button id="Sun" class="btn btn-outline-light btn-sm" type="button">Sun</button>
-            <button id="Mercury" class="btn btn-outline-light btn-sm" type="button">Mercury</button>
-            <button id="Venus" class="btn btn-outline-light btn-sm" type="button">Venus</button>
-            <button id="Earth" class="btn btn-outline-light btn-sm" type="button">Earth</button>
-            <button id="Mars" class="btn btn-outline-light btn-sm" type="button">Mars</button>
-            <button id="Jupiter" class="btn btn-outline-light btn-sm" type="button">Jupiter</button>
-            <button id="Saturn" class="btn btn-outline-light btn-sm" type="button">Saturn</button>
-            <button id="Uranus" class="btn btn-outline-light btn-sm" type="button">Uranus</button>
-            <button id="Neptune" class="btn btn-outline-light btn-sm" type="button">Neptune</button>
+            <button id="Orbit" class="btn btn-outline-danger btn-sm" type="button">Orbit</button>
+            <button id="Follow" class="btn btn-outline-danger btn-sm" type="button">Follow</button>
+            <button id="Land" class="btn btn-outline-danger btn-sm" type="button">Orbit</button>
             <form>
+                <span id="text-follow" style="font-size:13px">Follow Mode: </span>
+                <select name="follow" id="follow" style="font-size:13px">
+                    <option value="none" selected>none</option>
+                    <option value="Sun">Sun</option>
+                    <option value="Mercury">Mercury</option>
+                    <option value="Venus">Venus</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Mars">Mars</option>
+                    <option value="Jupiter">Jupiter</option>
+                    <option value="Saturn">Saturn</option>
+                    <option value="Uranus">Uranus</option>
+                    <option value="Neptune">Neptune</option>
+                </select>
+                <span id="text-Land" style="font-size:13px">Land Mode: </span>
+                <select name="land" id="land" style="font-size:13px">
+                    <option value="none" selected>none</option>
+                    <option value="Sun">Sun</option>
+                    <option value="Mercury">Mercury</option>
+                    <option value="Venus">Venus</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Mars">Mars</option>
+                    <option value="Jupiter">Jupiter</option>
+                    <option value="Saturn">Saturn</option>
+                    <option value="Uranus">Uranus</option>
+                    <option value="Neptune">Neptune</option>
+                </select>
                 <span id="text-satellites" style="font-size:13px">Moon: </span>
-                <select name="select" id="satellites" style="font-size:13px">
+                <select name="satellites" id="satellites" style="font-size:13px">
                     <option value="none" selected>none</option>
                     <option value="moon">Moon</option>
                     <option value="io">Io</option>

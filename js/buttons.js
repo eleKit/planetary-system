@@ -1,4 +1,7 @@
 $( document ).ready(function() {
+
+    var planet_visualized;
+
     function mute() {
         var audioElm = document.getElementById('music');
         if($('#Mute').text() === 'pause'){
@@ -16,6 +19,14 @@ $( document ).ready(function() {
 
     function resetSatellites(){
         $('#satellites').val('none').change();
+    }
+
+    function resetLandMode(){
+        $('#land').val('none').change();
+    }
+
+    function resetFollowMode(){
+        $('#follow').val('none').change();
     }
 
     function slowSpeed(){
@@ -40,17 +51,8 @@ $( document ).ready(function() {
 
     }
 
-    $('#Reset').on("click", resetCamera);
+    $('#Orbit').on("click", resetCamera);
 
-
-    function setSun() {
-        resetSatellites();
-        slowSpeed();
-        removeCamera();
-        planets[$("#Sun").text().toLowerCase()].mesh.add(camera);
-    }
-
-    $('#Sun').on("click", setSun);
 
 
 
@@ -59,93 +61,50 @@ $( document ).ready(function() {
     $('#satellites').change(function() {
         slowSpeed();
         removeCamera();
-        if($('#satellites').val() === 'none'){
+        const value = $('#satellites').val();
+        if(value === 'none'){
             //do nothing
         } else {
-            planets[$('#satellites').val().toLowerCase()].mesh.add(camera);
+            planets[value.toLowerCase()].mesh.add(camera);
+        }
+    });
+
+    $('#follow').change(function() {
+        resetSatellites();
+        resetLandMode();
+        slowSpeed();
+        removeCamera();
+
+        const value = $('#follow').val();
+        if(value === 'none'){
+            //do nothing
+        } else {
+            planets[value.toLowerCase()].mesh.add(camera);
+            //TODO need to find the right delta to look the planet
+            camera.position.copy(planets[value.toLowerCase()].mesh.position);
+        }
+    });
+
+    $('#land').change(function() {
+        resetSatellites();
+        resetFollowMode();
+        slowSpeed();
+        removeCamera();
+
+        const value = $('#land').val();
+        if(value === 'none'){
+            //do nothing
+        } else {
+            camera.position.copy(planets[value.toLowerCase()].mesh.position);
+            //TODO need to update the position near the planet
+            //TODO need to rotate to look horizontal
         }
     });
 
 
-    function setEarth() {
-        resetSatellites();
-        slowSpeed();
-        removeCamera();
-        planets[$("#Earth").text().toLowerCase()].mesh.add(camera);
-    }
-
-    $('#Earth').on("click", setEarth);
 
 
 
-    function setMars() {
-        resetSatellites();
-        slowSpeed();
-        removeCamera();
-        planets[$("#Mars").text().toLowerCase()].mesh.add(camera);
-    }
-
-    $('#Mars').on("click", setMars);
-
-
-    function setMercury() {
-        resetSatellites();
-        slowSpeed();
-        removeCamera();
-        planets[$("#Mercury").text().toLowerCase()].mesh.add(camera);
-    }
-
-    $('#Mercury').on("click", setMercury);
-
-
-    function setVenus() {
-        resetSatellites();
-        slowSpeed();
-        removeCamera();
-        planets[$("#Venus").text().toLowerCase()].mesh.add(camera);
-    }
-
-    $('#Venus').on("click", setVenus);
-
-
-    function setJupiter() {
-        resetSatellites();
-        slowSpeed();
-        removeCamera();
-        planets[$("#Jupiter").text().toLowerCase()].mesh.add(camera);
-    }
-
-    $('#Jupiter').on("click", setJupiter);
-
-
-    function setNeptune() {
-        resetSatellites();
-        slowSpeed();
-        removeCamera();
-        planets[$("#Neptune").text().toLowerCase()].mesh.add(camera);
-    }
-
-    $('#Neptune').on("click", setNeptune);
-
-
-    function setSaturn() {
-        resetSatellites();
-        slowSpeed();
-        removeCamera();
-        planets[$("#Saturn").text().toLowerCase()].mesh.add(camera);
-    }
-
-    $('#Saturn').on("click", setSaturn);
-
-
-    function setUranus() {
-        resetSatellites();
-        slowSpeed();
-        removeCamera();
-        planets[$("#Uranus").text().toLowerCase()].mesh.add(camera);
-    }
-
-    $('#Uranus').on("click", setUranus);
 
 
 });
