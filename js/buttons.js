@@ -33,6 +33,7 @@ $( document ).ready(function() {
     }
 
     function orbitCamera() {
+        $('#camera_mode').text('Camera mode: Orbit ');
         removeCamera();
         camera_mode= $('#Orbit').text().toLowerCase();
         controls.target = planets['sun'].mesh.position;
@@ -45,6 +46,7 @@ $( document ).ready(function() {
 
 
     function landCamera(){
+        $('#camera_mode').text('Camera mode: Land ');
         if (camera_mode === 'orbit'){
             $('#planets').prop("disabled", false);
         }
@@ -52,6 +54,7 @@ $( document ).ready(function() {
     }
 
     function followCamera(){
+        $('#camera_mode').text('Camera mode: Follow ');
         if (camera_mode === 'orbit'){
             $('#planets').prop("disabled", false);
         }
