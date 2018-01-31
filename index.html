@@ -20,40 +20,22 @@
         <div class="form-group">
             <button id="Orbit" class="btn btn-outline-danger btn-sm" type="button">Orbit</button>
             <button id="Follow" class="btn btn-outline-danger btn-sm" type="button">Follow</button>
-            <button id="Land" class="btn btn-outline-danger btn-sm" type="button">Orbit</button>
+            <button id="Land" class="btn btn-outline-danger btn-sm" type="button">Land</button>
             <form>
-                <span id="text-follow" style="font-size:13px">Follow Mode: </span>
-                <select name="follow" id="follow" style="font-size:13px">
-                    <option value="none" selected>none</option>
-                    <option value="Sun">Sun</option>
+                <span id="text-planets" style="font-size:13px">Planets: </span>
+                <select disabled="disabled" name="select" id="planets" style="font-size:13px">
+                    <option value="Sun" selected>Sun</option>
                     <option value="Mercury">Mercury</option>
                     <option value="Venus">Venus</option>
                     <option value="Earth">Earth</option>
+                    <option value="Moon">Moon</option>
                     <option value="Mars">Mars</option>
                     <option value="Jupiter">Jupiter</option>
+                    <option value="Io">Io</option>
+                    <option value="Europa">Europa</option>
                     <option value="Saturn">Saturn</option>
                     <option value="Uranus">Uranus</option>
                     <option value="Neptune">Neptune</option>
-                </select>
-                <span id="text-Land" style="font-size:13px">Land Mode: </span>
-                <select name="land" id="land" style="font-size:13px">
-                    <option value="none" selected>none</option>
-                    <option value="Sun">Sun</option>
-                    <option value="Mercury">Mercury</option>
-                    <option value="Venus">Venus</option>
-                    <option value="Earth">Earth</option>
-                    <option value="Mars">Mars</option>
-                    <option value="Jupiter">Jupiter</option>
-                    <option value="Saturn">Saturn</option>
-                    <option value="Uranus">Uranus</option>
-                    <option value="Neptune">Neptune</option>
-                </select>
-                <span id="text-satellites" style="font-size:13px">Moon: </span>
-                <select name="satellites" id="satellites" style="font-size:13px">
-                    <option value="none" selected>none</option>
-                    <option value="moon">Moon</option>
-                    <option value="io">Io</option>
-                    <option value="europa">Europa</option>
                 </select>
                 <span id="text-music" style="font-size:13px">Music: </span>
                 <button id="Mute" class="btn btn-outline-info btn-sm" type="button">pause</button>

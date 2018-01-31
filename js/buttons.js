@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-    var planet_visualized;
+    var camera_mode = 'orbit'; //default
 
     function mute() {
         var audioElm = document.getElementById('music');
@@ -16,18 +16,8 @@ $( document ).ready(function() {
 
     $('#Mute').on("click", mute);
 
+    $('#speed').change(function() { iterations = $('#speed').val() });
 
-    function resetSatellites(){
-        $('#satellites').val('none').change();
-    }
-
-    function resetLandMode(){
-        $('#land').val('none').change();
-    }
-
-    function resetFollowMode(){
-        $('#follow').val('none').change();
-    }
 
     function slowSpeed(){
         $('#speed').val('1').change();
@@ -40,70 +30,66 @@ $( document ).ready(function() {
             if (planet.mesh.children.includes(camera))
                 planet.mesh.remove(camera);
         }
-        controls.reset();
     }
 
-    function resetCamera() {
-        resetSatellites();
+    function orbitCamera() {
         removeCamera();
+        camera_mode= $('#Orbit').text().toLowerCase();
         controls.target = planets['sun'].mesh.position;
         controls.reset();
+        $('#planets').prop("disabled", true);
 
     }
 
-    $('#Orbit').on("click", resetCamera);
+    $('#Orbit').on("click", orbitCamera);
 
 
-
-
-    $('#speed').change(function() { iterations = $('#speed').val() });
-
-    $('#satellites').change(function() {
-        slowSpeed();
-        removeCamera();
-        const value = $('#satellites').val();
-        if(value === 'none'){
-            //do nothing
-        } else {
-            planets[value.toLowerCase()].mesh.add(camera);
+    function landCamera(){
+        if (camera_mode === 'orbit'){
+            $('#planets').prop("disabled", false);
         }
-    });
+        camera_mode = $('#Land').text().toLowerCase();
+    }
 
-    $('#follow').change(function() {
-        resetSatellites();
-        resetLandMode();
-        slowSpeed();
-        removeCamera();
-
-        const value = $('#follow').val();
-        if(value === 'none'){
-            //do nothing
-        } else {
-            planets[value.toLowerCase()].mesh.add(camera);
-            //TODO need to find the right delta to look the planet
-            camera.position.copy(planets[value.toLowerCase()].mesh.position);
+    function followCamera(){
+        if (camera_mode === 'orbit'){
+            $('#planets').prop("disabled", false);
         }
-    });
 
-    $('#land').change(function() {
-        resetSatellites();
-        resetFollowMode();
-        slowSpeed();
-        removeCamera();
+        camera_mode = $('#Follow').text().toLowerCase();
+    }
 
-        const value = $('#land').val();
-        if(value === 'none'){
-            //do nothing
-        } else {
-            camera.position.copy(planets[value.toLowerCase()].mesh.position);
-            //TODO need to update the position near the planet
-            //TODO need to rotate to look horizontal
+
+    $('#Land').on("click", landCamera);
+    $('#Follow').on("click", followCamera);
+
+
+
+    $('#planets').change(
+        function () {
+            slowSpeed();
+            removeCamera();
+
+            const planet_name = $('#planets').val();
+            if(camera_mode === 'land'){
+                camera.position.copy(planets[planet_name.toLowerCase()].mesh.position);
+                //TODO need to update the position near the planet
+                //TODO need to rotate to look horizontal
+            }
+            else if(camera_mode === 'follow'){
+                planets[planet_name.toLowerCase()].mesh.add(camera);
+                //TODO need to find the right delta to look the planet
+
+                //camera.position.copy(planets[planet_name.toLowerCase()].mesh.position);
+                //camera.rotation.x += (1.5708 - planets[planet_name.toLowerCase()].angle);
+
+                /* TODO prima qui mi allontanavo dai pianeti perchè facevo sempre un reset camera,
+                   TODO ora non mi allontano più perchè non resetto ogni volta che setto un pianeta!!!
+                 */
+            }
+            else {}
         }
-    });
-
-
-
-
+    );
 
 
 
