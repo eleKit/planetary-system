@@ -94,7 +94,32 @@ var planets = {
         'rotation_rate' : 1.75865e-4,
         'physics': new CelestialBody('Jupiter', JUPITER.MASS, JUPITER.INITIAL_POSITION, JUPITER.INITIAL_VELOCITY)
     },
-    
+
+    //galilean satellites
+
+    'io': {
+        'geometry': new THREE.SphereBufferGeometry( IO.RADIUS * radius_scale, IO.WIDTH, IO.HEIGHT, IO.PHI_START, IO.PHI_LENGTH, IO.THETA_STARTS, IO.THETA_LENGTH),
+        'material': new THREE.MeshLambertMaterial({
+            map: new THREE.TextureLoader().load( 'planets_textures/io_jup1vss2.jpg'),
+            overdraw: 0.5,
+        }),
+        'angle' : 0.06981317,
+        'rotation_rate' : 0.00004106657064,
+        'physics': new CelestialBody('Io', IO.MASS, IO.INITIAL_POSITION, IO.INITIAL_VELOCITY)
+    },
+
+    'europa': {
+        'geometry': new THREE.SphereBufferGeometry(EUROPA.RADIUS  * radius_scale, EUROPA.WIDTH, EUROPA.HEIGHT, EUROPA.PHI_START, EUROPA.PHI_LENGTH, EUROPA.THETA_STARTS, EUROPA.THETA_LENGTH),
+        'material': new THREE.MeshLambertMaterial({
+            map: new THREE.TextureLoader().load( 'planets_textures/europa_jup2vss2.jpg'),
+            overdraw: 0.5,
+        }),
+        'angle' : 0.8203047,
+        'rotation_rate' : 0.00002048508512,
+        'physics': new CelestialBody('Europa', EUROPA.MASS, EUROPA.INITIAL_POSITION, EUROPA.INITIAL_VELOCITY)
+    },
+
+    //end galilean satellites
     
     'uranus': {
         'geometry': new THREE.SphereBufferGeometry(URANUS.RADIUS * radius_scale, URANUS.WIDTH, URANUS.HEIGHT, URANUS.PHI_START, URANUS.PHI_LENGTH, URANUS.THETA_STARTS, URANUS.THETA_LENGTH),

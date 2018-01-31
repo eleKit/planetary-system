@@ -83,7 +83,7 @@ scene.add(new THREE.AmbientLight(0x404040));
 
 
 
-var point_light = new THREE.PointLight( 0xF7F7F7, 0.65, 0, 2 );
+var point_light = new THREE.PointLight( 0xF7F7F7, 0.7, 0, 2 );
 point_light.position = planets['sun'].mesh.position.clone();
 scene.add( point_light );
 
@@ -104,6 +104,12 @@ var animate = function () {
         if(p_name === 'moon'){
             planet.mesh.position.add(planet.mesh.position.clone().sub(scalePosition(planets['earth'].physics)).multiplyScalar(50));
         }
+
+        if(p_name === 'io' || p_name === 'europa'){
+            planet.mesh.position.add(planet.mesh.position.clone().sub(scalePosition(planets['jupiter'].physics)).multiplyScalar(300));
+        }
+
+
         if(p_name === 'saturn'){
             torus.position.copy(planet.mesh.position);
         }
