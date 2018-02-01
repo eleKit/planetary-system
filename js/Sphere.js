@@ -21,7 +21,13 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setClearColor( 0xd2d2d2, 1 );
 
 //background
-scene.background = new THREE.TextureLoader().load( 'planets_textures/2k_stars_milky_way.jpg');
+scene.background = new THREE.CubeTextureLoader().load(
+    ['planets_textures/2k_stars_milky_way.jpg',
+    'planets_textures/2k_stars_milky_way.jpg',
+    'planets_textures/2k_stars_milky_way.jpg',
+    'planets_textures/2k_stars_milky_way.jpg',
+    'planets_textures/2k_stars_milky_way.jpg',
+    'planets_textures/2k_stars_milky_way.jpg']);
 
 document.body.appendChild( renderer.domElement );
 
