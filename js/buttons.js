@@ -33,20 +33,26 @@ $( document ).ready(function() {
     }
 
     function resetCamera() {
-        resetSatellites();
-        removeCamera();
         controls.target = planets['sun'].mesh.position;
         controls.reset();
 
     }
 
-    $('#Reset').on("click", resetCamera);
+    function orbit(){
+        resetSatellites();
+        removeCamera();
+        resetCamera();
+    }
+
+    $('#Reset').on("click", orbit);
 
 
     function setSun() {
         resetSatellites();
         slowSpeed();
         removeCamera();
+        resetCamera();
+        camera.position.copy(new THREE.Vector3(0,0,5));
         planets[$("#Sun").text().toLowerCase()].mesh.add(camera);
     }
 
@@ -71,6 +77,8 @@ $( document ).ready(function() {
         resetSatellites();
         slowSpeed();
         removeCamera();
+        resetCamera();
+        camera.position.copy(new THREE.Vector3(0,0,5));
         planets[$("#Earth").text().toLowerCase()].mesh.add(camera);
     }
 
@@ -82,6 +90,8 @@ $( document ).ready(function() {
         resetSatellites();
         slowSpeed();
         removeCamera();
+        resetCamera();
+        camera.position.copy(new THREE.Vector3(0,0,5));
         planets[$("#Mars").text().toLowerCase()].mesh.add(camera);
     }
 
@@ -92,6 +102,8 @@ $( document ).ready(function() {
         resetSatellites();
         slowSpeed();
         removeCamera();
+        resetCamera();
+        camera.position.copy(new THREE.Vector3(0,0,5));
         planets[$("#Mercury").text().toLowerCase()].mesh.add(camera);
     }
 
@@ -102,6 +114,8 @@ $( document ).ready(function() {
         resetSatellites();
         slowSpeed();
         removeCamera();
+        resetCamera();
+        camera.position.copy(new THREE.Vector3(0,0,5));
         planets[$("#Venus").text().toLowerCase()].mesh.add(camera);
     }
 
@@ -112,6 +126,8 @@ $( document ).ready(function() {
         resetSatellites();
         slowSpeed();
         removeCamera();
+        resetCamera();
+        camera.position.copy(new THREE.Vector3(0,0,50));
         planets[$("#Jupiter").text().toLowerCase()].mesh.add(camera);
     }
 
@@ -122,6 +138,8 @@ $( document ).ready(function() {
         resetSatellites();
         slowSpeed();
         removeCamera();
+        resetCamera();
+        camera.position.copy(new THREE.Vector3(0,0,50));
         planets[$("#Neptune").text().toLowerCase()].mesh.add(camera);
     }
 
@@ -132,6 +150,8 @@ $( document ).ready(function() {
         resetSatellites();
         slowSpeed();
         removeCamera();
+        resetCamera();
+        camera.position.copy(new THREE.Vector3(0,0,50));
         planets[$("#Saturn").text().toLowerCase()].mesh.add(camera);
     }
 
@@ -142,6 +162,8 @@ $( document ).ready(function() {
         resetSatellites();
         slowSpeed();
         removeCamera();
+        resetCamera();
+        camera.position.copy(new THREE.Vector3(0,0,50));
         planets[$("#Uranus").text().toLowerCase()].mesh.add(camera);
     }
 
