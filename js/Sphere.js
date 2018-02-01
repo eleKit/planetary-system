@@ -24,8 +24,8 @@ renderer.setClearColor( 0xd2d2d2, 1 );
 scene.background = new THREE.CubeTextureLoader().load(
     ['planets_textures/2k_stars_milky_way.jpg',
     'planets_textures/2k_stars_milky_way.jpg',
-    'planets_textures/2k_stars_milky_way.jpg',
-    'planets_textures/2k_stars_milky_way.jpg',
+    'planets_textures/2k_stars.jpg',
+    'planets_textures/2k_stars.jpg',
     'planets_textures/2k_stars_milky_way.jpg',
     'planets_textures/2k_stars_milky_way.jpg']);
 

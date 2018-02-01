@@ -52,7 +52,7 @@ $( document ).ready(function() {
         slowSpeed();
         removeCamera();
         resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,5));
+        camera.position.copy(new THREE.Vector3(0,0,10));
         planets[$("#Sun").text().toLowerCase()].mesh.add(camera);
     }
 
@@ -65,6 +65,8 @@ $( document ).ready(function() {
     $('#satellites').change(function() {
         slowSpeed();
         removeCamera();
+        resetCamera();
+        camera.position.copy(new THREE.Vector3(0,0,2));
         if($('#satellites').val() === 'none'){
             //do nothing
         } else {
@@ -91,7 +93,7 @@ $( document ).ready(function() {
         slowSpeed();
         removeCamera();
         resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,5));
+        camera.position.copy(new THREE.Vector3(0,0,2));
         planets[$("#Mars").text().toLowerCase()].mesh.add(camera);
     }
 
@@ -103,7 +105,7 @@ $( document ).ready(function() {
         slowSpeed();
         removeCamera();
         resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,5));
+        camera.position.copy(new THREE.Vector3(0,0,2));
         planets[$("#Mercury").text().toLowerCase()].mesh.add(camera);
     }
 
@@ -139,7 +141,7 @@ $( document ).ready(function() {
         slowSpeed();
         removeCamera();
         resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,50));
+        camera.position.copy(new THREE.Vector3(0,0,20));
         planets[$("#Neptune").text().toLowerCase()].mesh.add(camera);
     }
 
@@ -163,7 +165,7 @@ $( document ).ready(function() {
         slowSpeed();
         removeCamera();
         resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,50));
+        camera.position.copy(new THREE.Vector3(0,0,20));
         planets[$("#Uranus").text().toLowerCase()].mesh.add(camera);
     }
 
