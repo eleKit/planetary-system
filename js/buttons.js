@@ -66,10 +66,10 @@ $( document ).ready(function() {
         slowSpeed();
         removeCamera();
         resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,2));
         if($('#satellites').val() === 'none'){
             //do nothing
         } else {
+            camera.position.copy(new THREE.Vector3(0,0,2));
             planets[$('#satellites').val().toLowerCase()].mesh.add(camera);
         }
     });
