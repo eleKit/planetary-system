@@ -1,4 +1,22 @@
 $( document ).ready(function() {
+
+
+    function startPlayMusic(){
+        var promise = document.getElementById('music').play();
+        promise.catch(function(error)
+        {
+            $('#Mute').text('play');
+        });
+        if($('#Mute').text() === 'stop'){
+            $('#Mute').text('pause');
+        }
+
+    }
+
+    startPlayMusic();
+
+
+
     function mute() {
         var audioElm = document.getElementById('music');
         if($('#Mute').text() === 'pause'){
