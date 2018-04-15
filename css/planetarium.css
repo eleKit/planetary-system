@@ -5,7 +5,7 @@ canvas { position: absolute; top: 13%;}
 
 div#controls { position: absolute; z-index: 100; }
 
-form {margin-top: 15px; padding-left: 10px; padding-right: 5px;}
+form {margin-top: 5px; padding-left: 10px; padding-right: 5px;}
 
 select#speed{padding-left: 10px; padding-right: 5px;}
 

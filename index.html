@@ -16,55 +16,56 @@
     </audio>
 
 
-    <div id="Commands" class="form-inline">
+    <div id="Commands">
         <div class="form-group">
             <form>
-                <span id="text-camera" style="font-size:13px">Camera Mode: </span>
-                <select name="select" id="camera" style="font-size:13px">
-                    <option value="orbit" selected>Orbit</option>
-                    <option value="follow">Follow</option>
-                </select>
-            </form>
-            <button id="Reset" class="btn btn-outline-danger btn-sm" type="button">Reset</button>
-            <button id="Sun" class="btn btn-outline-light btn-sm" type="button">Sun</button>
-            <button id="Mercury" class="btn btn-outline-light btn-sm" type="button">Mercury</button>
-            <button id="Venus" class="btn btn-outline-light btn-sm" type="button">Venus</button>
-            <button id="Earth" class="btn btn-outline-light btn-sm" type="button">Earth</button>
-            <button id="Mars" class="btn btn-outline-light btn-sm" type="button">Mars</button>
-            <button id="Jupiter" class="btn btn-outline-light btn-sm" type="button">Jupiter</button>
-            <button id="Saturn" class="btn btn-outline-light btn-sm" type="button">Saturn</button>
-            <button id="Uranus" class="btn btn-outline-light btn-sm" type="button">Uranus</button>
-            <button id="Neptune" class="btn btn-outline-light btn-sm" type="button">Neptune</button>
-            <form>
-                <span id="text-satellites" style="font-size:13px">Moon: </span>
-                <select name="select" id="satellites" style="font-size:13px">
+                <button id="Reset" class="btn btn-outline-danger btn-sm" type="button">Reset</button>
+                <button id="Sun" class="btn btn-outline-light btn-sm" type="button">Sun</button>
+                <button id="Mercury" class="btn btn-outline-light btn-sm" type="button">Mercury</button>
+                <button id="Venus" class="btn btn-outline-light btn-sm" type="button">Venus</button>
+                <button id="Earth" class="btn btn-outline-light btn-sm" type="button">Earth</button>
+                <button id="Mars" class="btn btn-outline-light btn-sm" type="button">Mars</button>
+                <button id="Jupiter" class="btn btn-outline-light btn-sm" type="button">Jupiter</button>
+                <button id="Saturn" class="btn btn-outline-light btn-sm" type="button">Saturn</button>
+                <button id="Uranus" class="btn btn-outline-light btn-sm" type="button">Uranus</button>
+                <button id="Neptune" class="btn btn-outline-light btn-sm" type="button">Neptune</button>
+                <span id="text-satellites" style="font-size: 12px">Moon: </span>
+                <select name="select" id="satellites" style="font-size:12px">
                     <option value="none" selected>none</option>
                     <option value="moon">Moon</option>
                     <option value="io">Io</option>
                     <option value="europa">Europa</option>
                 </select>
-                <span id="text-music" style="font-size:13px">Music: </span>
-                <button id="Mute" class="btn btn-outline-info btn-sm" type="button">stop</button>
-                <span id="text-speed" style="font-size:13px">Speed: </span>
-                <select name="select" id="speed" style="font-size:13px">
-                    <option value="1">Very Slow</option>
-                    <option value="10">Slow</option>
-                    <option value="50">Medium</option>
-                    <option value="100" selected>Fast</option>
-                </select>
-                <span id="date" style="font-size:13px">xxx</span>
+                    <span id="text-speed" style="font-size:12px">Speed: </span>
+                    <select name="select" id="speed" style="font-size:12px">
+                        <option value="1">Very Slow</option>
+                        <option value="10">Slow</option>
+                        <option value="50">Medium</option>
+                        <option value="100" selected>Fast</option>
+                    </select>
+                    <span id="text-music" style="font-size:12px">Music: </span>
+                    <button id="Mute" class="btn btn-outline-info btn-sm" type="button">stop</button>
+                <span id="date" style="font-size:12px">xxx</span>
             </form>
-
         </div>
-    </div>
-    <div id="credits" class="container">
-        <p class="text-secondary" style="font-size:15px"> Project developed for
-            Computer Graphics Course at
-            <a href="https://www.polimi.it/home/" target="_blank">Polimi</a> by
-            <a href="https://github.com/elekit" target="_blank">Eleonora</a>,
-            music from: <a href="https://www.bensound.com" target="_blank">bensound.com</a></p>
 
-
+        <div class="form-group">
+            <form>
+            <span id="text-camera" style="font-size:12px">Camera Mode: </span>
+            <select name="select" id="camera" style="font-size:12px">
+                <option value="orbit" selected>Orbit</option>
+                <option value="follow">Follow</option>
+            </select>
+                <span id="mouse-info" style="font-size:12px">
+                    <b>Orbit camera mode: </b> the camera follows the orbit of the designated planet.
+                    <b>Follow camera mode:</b> the camera follows a fixed point on the planet surface.
+                    <br>Project developed for Computer Graphics Course at
+                <a href="https://www.polimi.it/home/" target="_blank">Polimi</a> by
+                <a href="https://github.com/elekit" target="_blank">Eleonora</a>,
+                music from: <a href="https://www.bensound.com" target="_blank">bensound.com</a>
+                </span>
+            </form>
+        </div>
     </div>
 </div>
 
