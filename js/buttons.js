@@ -62,16 +62,35 @@ $( document ).ready(function() {
         resetCamera();
     }
 
+    $('#camera').change(function() {
+        if($('#camera').val() === 'orbit'){
+           orbit_mode = true;
+           orbit();
+        } else {
+            orbit_mode = false;
+            orbit();
+            slowSpeed();
+            camera.position.copy(new THREE.Vector3(0, 0, 10));
+            planets['sun'].mesh.add(camera);
+
+        }
+    });
+
+
     $('#Reset').on("click", orbit);
 
 
     function setSun() {
         resetSatellites();
-        slowSpeed();
-        removeCamera();
-        resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,10));
-        planets[$("#Sun").text().toLowerCase()].mesh.add(camera);
+        if (orbit_mode){
+            controls.target = planets[$('#Sun').text().toLowerCase()].mesh.position;
+        }else {
+            slowSpeed();
+            removeCamera();
+            //resetCamera();
+            camera.position.copy(new THREE.Vector3(0, 0, 10));
+            planets[$("#Sun").text().toLowerCase()].mesh.add(camera);
+        }
     }
 
     $('#Sun').on("click", setSun);
@@ -80,26 +99,35 @@ $( document ).ready(function() {
 
     $('#speed').change(function() { iterations = $('#speed').val() });
 
+
     $('#satellites').change(function() {
-        slowSpeed();
-        removeCamera();
-        resetCamera();
         if($('#satellites').val() === 'none'){
             //do nothing
         } else {
-            camera.position.copy(new THREE.Vector3(0,0,2));
-            planets[$('#satellites').val().toLowerCase()].mesh.add(camera);
+            if(orbit_mode){
+                controls.target = planets[$('#satellites').val().toLowerCase()].mesh.position;
+            } else {
+                slowSpeed();
+                removeCamera();
+                //resetCamera();
+                camera.position.copy(new THREE.Vector3(0, 0, 2));
+                planets[$('#satellites').val().toLowerCase()].mesh.add(camera);
+            }
         }
     });
 
 
     function setEarth() {
         resetSatellites();
-        slowSpeed();
-        removeCamera();
-        resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,5));
-        planets[$("#Earth").text().toLowerCase()].mesh.add(camera);
+        if(orbit_mode){
+            controls.target = planets[$('#Earth').text().toLowerCase()].mesh.position;
+        }else {
+            slowSpeed();
+            removeCamera();
+            //resetCamera();
+            camera.position.copy(new THREE.Vector3(0, 0, 5));
+            planets[$("#Earth").text().toLowerCase()].mesh.add(camera);
+        }
     }
 
     $('#Earth').on("click", setEarth);
@@ -108,11 +136,15 @@ $( document ).ready(function() {
 
     function setMars() {
         resetSatellites();
-        slowSpeed();
-        removeCamera();
-        resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,2));
-        planets[$("#Mars").text().toLowerCase()].mesh.add(camera);
+        if(orbit_mode) {
+            controls.target = planets[$('#Mars').text().toLowerCase()].mesh.position;
+        }else {
+            slowSpeed();
+            removeCamera();
+            //resetCamera();
+            camera.position.copy(new THREE.Vector3(0, 0, 2));
+            planets[$("#Mars").text().toLowerCase()].mesh.add(camera);
+        }
     }
 
     $('#Mars').on("click", setMars);
@@ -120,11 +152,15 @@ $( document ).ready(function() {
 
     function setMercury() {
         resetSatellites();
-        slowSpeed();
-        removeCamera();
-        resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,2));
-        planets[$("#Mercury").text().toLowerCase()].mesh.add(camera);
+        if(orbit_mode) {
+            controls.target = planets[$('#Mercury').text().toLowerCase()].mesh.position;
+        }else {
+            slowSpeed();
+            removeCamera();
+            //resetCamera();
+            camera.position.copy(new THREE.Vector3(0, 0, 2));
+            planets[$("#Mercury").text().toLowerCase()].mesh.add(camera);
+        }
     }
 
     $('#Mercury').on("click", setMercury);
@@ -132,11 +168,15 @@ $( document ).ready(function() {
 
     function setVenus() {
         resetSatellites();
-        slowSpeed();
-        removeCamera();
-        resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,5));
-        planets[$("#Venus").text().toLowerCase()].mesh.add(camera);
+        if(orbit_mode) {
+            controls.target = planets[$('#Venus').text().toLowerCase()].mesh.position;
+        }else {
+            slowSpeed();
+            removeCamera();
+            //resetCamera();
+            camera.position.copy(new THREE.Vector3(0, 0, 5));
+            planets[$("#Venus").text().toLowerCase()].mesh.add(camera);
+        }
     }
 
     $('#Venus').on("click", setVenus);
@@ -144,11 +184,15 @@ $( document ).ready(function() {
 
     function setJupiter() {
         resetSatellites();
-        slowSpeed();
-        removeCamera();
-        resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,50));
-        planets[$("#Jupiter").text().toLowerCase()].mesh.add(camera);
+        if(orbit_mode) {
+            controls.target = planets[$('#Jupiter').text().toLowerCase()].mesh.position;
+        }else {
+            slowSpeed();
+            removeCamera();
+            //resetCamera();
+            camera.position.copy(new THREE.Vector3(0, 0, 50));
+            planets[$("#Jupiter").text().toLowerCase()].mesh.add(camera);
+        }
     }
 
     $('#Jupiter').on("click", setJupiter);
@@ -156,11 +200,15 @@ $( document ).ready(function() {
 
     function setNeptune() {
         resetSatellites();
-        slowSpeed();
-        removeCamera();
-        resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,20));
-        planets[$("#Neptune").text().toLowerCase()].mesh.add(camera);
+        if(orbit_mode) {
+            controls.target = planets[$('#Neptune').text().toLowerCase()].mesh.position;
+        }else {
+            slowSpeed();
+            removeCamera();
+            //resetCamera();
+            camera.position.copy(new THREE.Vector3(0, 0, 20));
+            planets[$("#Neptune").text().toLowerCase()].mesh.add(camera);
+        }
     }
 
     $('#Neptune').on("click", setNeptune);
@@ -168,11 +216,15 @@ $( document ).ready(function() {
 
     function setSaturn() {
         resetSatellites();
-        slowSpeed();
-        removeCamera();
-        resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,50));
-        planets[$("#Saturn").text().toLowerCase()].mesh.add(camera);
+        if(orbit_mode) {
+            controls.target = planets[$('#Saturn').text().toLowerCase()].mesh.position;
+        }else {
+            slowSpeed();
+            removeCamera();
+            //resetCamera();
+            camera.position.copy(new THREE.Vector3(0, 0, 50));
+            planets[$("#Saturn").text().toLowerCase()].mesh.add(camera);
+        }
     }
 
     $('#Saturn').on("click", setSaturn);
@@ -180,11 +232,15 @@ $( document ).ready(function() {
 
     function setUranus() {
         resetSatellites();
-        slowSpeed();
-        removeCamera();
-        resetCamera();
-        camera.position.copy(new THREE.Vector3(0,0,20));
-        planets[$("#Uranus").text().toLowerCase()].mesh.add(camera);
+        if(orbit_mode) {
+            controls.target = planets[$('#Uranus').text().toLowerCase()].mesh.position;
+        }else {
+            slowSpeed();
+            removeCamera();
+            //resetCamera();
+            camera.position.copy(new THREE.Vector3(0, 0, 20));
+            planets[$("#Uranus").text().toLowerCase()].mesh.add(camera);
+        }
     }
 
     $('#Uranus').on("click", setUranus);

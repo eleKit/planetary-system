@@ -18,7 +18,14 @@
 
     <div id="Commands" class="form-inline">
         <div class="form-group">
-            <button id="Reset" class="btn btn-outline-danger btn-sm" type="button">Orbit</button>
+            <form>
+                <span id="text-camera" style="font-size:13px">Camera Mode: </span>
+                <select name="select" id="camera" style="font-size:13px">
+                    <option value="orbit" selected>Orbit</option>
+                    <option value="follow">Follow</option>
+                </select>
+            </form>
+            <button id="Reset" class="btn btn-outline-danger btn-sm" type="button">Reset</button>
             <button id="Sun" class="btn btn-outline-light btn-sm" type="button">Sun</button>
             <button id="Mercury" class="btn btn-outline-light btn-sm" type="button">Mercury</button>
             <button id="Venus" class="btn btn-outline-light btn-sm" type="button">Venus</button>

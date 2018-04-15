@@ -1,5 +1,8 @@
 initializePhysics();
 
+//boolean value to set orbit or follow camera mode
+var orbit_mode = true;
+
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
 
 //pay attention, if you remove camera location trackball controls stops working, otherwise you must fix a target
