@@ -85,7 +85,7 @@ var planets = {
     
     
     'jupiter': {
-        'geometry': new THREE.SphereBufferGeometry(JUPITER.RADIUS * radius_scale, JUPITER.WIDTH, JUPITER.HEIGHT, JUPITER.PHI_START, JUPITER.PHI_LENGTH, JUPITER.THETA_STARTS, JUPITER.THETA_LENGTH),
+        'geometry': new THREE.SphereBufferGeometry(JUPITER.RADIUS * radius_scale * 0.3, JUPITER.WIDTH, JUPITER.HEIGHT, JUPITER.PHI_START, JUPITER.PHI_LENGTH, JUPITER.THETA_STARTS, JUPITER.THETA_LENGTH),
         'material': new THREE.MeshLambertMaterial({
             map: new THREE.TextureLoader().load( 'planets_textures/2k_jupiter.jpg'),
             overdraw: 0.5,
@@ -145,7 +145,7 @@ var planets = {
 
     'saturn': {
         //SphereBufferGeometry(radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength)
-        'geometry': new THREE.SphereBufferGeometry(SATURN.RADIUS * radius_scale, SATURN.WIDTH, SATURN.HEIGHT, SATURN.PHI_START, SATURN.PHI_LENGTH, SATURN.THETA_STARTS, SATURN.THETA_LENGTH),
+        'geometry': new THREE.SphereBufferGeometry(SATURN.RADIUS * radius_scale * 0.5, SATURN.WIDTH, SATURN.HEIGHT, SATURN.PHI_START, SATURN.PHI_LENGTH, SATURN.THETA_STARTS, SATURN.THETA_LENGTH),
         'material': new THREE.MeshLambertMaterial({
             map: new THREE.TextureLoader().load( 'planets_textures/2k_saturn.jpg'),
             overdraw: 0.5,
