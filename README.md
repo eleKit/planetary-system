@@ -2,8 +2,6 @@
 
 Solar System simulator using [Velocity Verlet Algorithm](https://en.wikipedia.org/wiki/Verlet_integration) developed for the Computer Graphics course at Politecnico di Milano.
 
-The Solar System simulator is published here https://elekit.github.io/planetary-system/
-
 ### credits
 1. [Three.js](https://threejs.org/) library
 2. NASA [HORIZONS Web-Interface](https://ssd.jpl.nasa.gov/horizons.cgi#top) used to generate ephemerides for solar-system bodies.
