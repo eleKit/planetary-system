@@ -69,7 +69,7 @@ for(const p_name in planets) {
 }
 
 //saturn ring
-var torus_geometry = new THREE.TorusGeometry( SATURN.RADIUS * radius_scale * 0.5 * 2 ,SATURN.RADIUS * radius_scale * 0.5 /3 , 2.7, 100 );
+var torus_geometry = new THREE.TorusGeometry( SATURN.RADIUS * radius_scale * 2 ,SATURN.RADIUS * radius_scale /3 , 2.7, 100 );
 var torus_material = new THREE.MeshLambertMaterial( { map: new THREE.TextureLoader().load( 'planets_textures/saturnringcolor.jpg'),
     overdraw: 0.5, transparent : true, opacity: 0.7} );
 var torus = new THREE.Mesh( torus_geometry, torus_material );
@@ -115,7 +115,7 @@ var animate = function () {
         }
 
         if(p_name === 'io' || p_name === 'europa'){
-            planet.mesh.position.add(planet.mesh.position.clone().sub(scalePosition(planets['jupiter'].physics)).multiplyScalar(150));
+            planet.mesh.position.add(planet.mesh.position.clone().sub(scalePosition(planets['jupiter'].physics)).multiplyScalar(300));
         }
 
 
